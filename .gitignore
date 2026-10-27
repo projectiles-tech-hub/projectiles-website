@@ -1,0 +1,18 @@
+# Dependencies and build output
+node_modules/
+site/dist/
+site/.astro/
+
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+enquiry.config.php
+
+# Editors and systems
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
