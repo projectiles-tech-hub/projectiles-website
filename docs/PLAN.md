@@ -71,6 +71,12 @@ A completely new look, not the June 2026 one: trendy and premium. Large, confide
 white space, refined type, and restrained colour built around the company logo. Easy to scan: a visitor should see
 what we do within the first screen of the home page.
 
+## Logo
+
+The logo is in `brand/logo-original.png` (light and dark versions). Its current colours are navy (about `#021B3D`)
+and gold (about `#CC992A`). The colours will be adjusted with Emmanuel during the design system step to suit the
+new look; the shape stays. The final logo is redrawn as a clean SVG (vector) file so it stays sharp at every size.
+
 ## Design principles (the same ones used for FindHouseQuick)
 
 - **Designs first.** Claude designs every page in Penpot; Emmanuel approves each design before it is built. The
@@ -93,6 +99,18 @@ what we do within the first screen of the home page.
 - **Cloudflare** (free) in front of the host for speed and protection.
 - **Publishing**: when a pull request is merged, GitHub builds the site and uploads it to the host automatically;
   it also rebuilds daily to pick up new YouTube videos.
+
+## Skills used in the build
+
+These Claude skills are used for this website. Emmanuel switches them on in **Customize, Skills** when the stage
+that needs them starts.
+
+| Skill | What it does | When it is used |
+| --- | --- | --- |
+| Taste Skill (`design-taste-frontend`, github.com/Leonxlnx/taste-skill) | Keeps the website code from looking plain or template-made: rules for type, spacing, colour, layout and animation, with a check before finishing | While building the pages; it follows the approved design system and does not choose its own look |
+| Web Design Guidelines (`web-design-guidelines`, github.com/vercel-labs/agent-skills) | Reviews the website code against Vercel's web interface guidelines: accessibility, layout and usability | After each group of pages is built, before its pull request |
+| Playwright CLI (`playwright-cli`, github.com/microsoft/playwright-cli) | Opens the website in a real browser, clicks through it, takes screenshots and runs tests | Checking every page at phone, tablet and desktop widths, and testing the forms |
+| Cloudflare Security Audit (github.com/cloudflare/security-audit-skill) | Checks the code and setup for security holes and writes a report | Once, after the build is finished and before going live |
 
 ## Quality standards
 

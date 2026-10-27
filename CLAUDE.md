@@ -21,6 +21,13 @@ Update `STATUS.md` at the end of each session. Any setting, password location or
 - Plain language; short side notes for technical terms. No em dashes in anything written for him.
 - His name is written Emmanuel Chukwuka Oraegbu, without post-nominal letters.
 
+## Skills
+
+Use the skills listed in `docs/PLAN.md` ("Skills used in the build") at the stages given there: Taste Skill while
+building pages (within the approved design system), Web Design Guidelines to review each group of pages, Playwright
+CLI to check pages and forms in a browser, and the Cloudflare Security Audit once the build is finished. If a skill is
+not switched on when its stage starts, ask Emmanuel to switch it on.
+
 ## Rules for the code
 
 - The built site is plain files (HTML, CSS, JavaScript, images, plus one PHP file for the contact form), so it runs
