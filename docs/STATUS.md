@@ -7,7 +7,7 @@ Updated: 27 October 2026.
 - Repository and instructions set up.
 - Emmanuel's answers of 27 October 2026 recorded in `PLAN.md` (pull request #1, awaiting approval): business
   lines; a completely new, premium look; FindHouseQuick design principles; estate projects as communities that can
-  be added (Obazuwa, Uzala and Ekole, all coming soon); videos from YouTube; contacts; the logo (`brand/`); the skills used in the build.
+  be added (Obazuwa, Uzala and Ekole, all coming soon); videos from YouTube; contacts; the logo (`brand/`); the skills used in the build; the design brief for the designer.
 - Nothing designed or built yet.
 
 ## Questions for Emmanuel
@@ -20,7 +20,7 @@ Updated: 27 October 2026.
 ## Next
 
 1. [ ] YouTube channel.
-2. [ ] Design system in Figma, approved.
+2. [ ] Design system in Figma, approved (brief: `DESIGN_BRIEF.md`; progress: `designs.md`).
 3. [ ] Page designs in Figma, approved.
 4. [ ] Build the pages.
 5. [ ] Hosting, domain, forms, YouTube feed and automatic publishing.

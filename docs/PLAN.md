@@ -74,22 +74,14 @@ what we do within the first screen of the home page.
 ## Logo
 
 The logo is in `brand/logo-original.png` (light and dark versions). Its current colours are navy (about `#021B3D`)
-and gold (about `#CC992A`). The colours will be adjusted with Emmanuel during the design system step to suit the
+and gold (about `#CC992A`). The colours may be adjusted in the design system step to suit the
 new look; the shape stays. The final logo is redrawn as a clean SVG (vector) file so it stays sharp at every size.
 
-## Design principles (the same ones used for FindHouseQuick)
+## Design
 
-- **Designs first.** Claude designs the design system and every page in Figma, in the file "Projectiles Website" (https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7); Emmanuel approves each design before it is built. The
-  design system (colours, type, spacing, icons, buttons, cards, forms) is approved before any page.
-- **Choices shown side by side.** Colour and type options are compared on screen before one is chosen.
-- **Own icon set.** Icons are drawn for this website, to a standard above Font Awesome's paid set, with outline and
-  filled styles. No outside icon set is used.
-- **Fonts that fit Nigeria.** Every font must include the Naira sign and the dotted letters Yoruba and Igbo need.
-  Text is never smaller than 14; reading text is 16.
-- **Spacing in steps of 4**, and every tap target at least 48 by 48.
-- **Responsive at every width.** Each page is designed at 1366 (desktop), 768 (tablet) and 360 (phone). Above 1366
-  the layout stretches, with content kept to a comfortable reading width.
-- **Accessible.** Readable colour contrast (WCAG 2.1 AA), keyboard use, descriptions on images, labels on fields.
+The design system and every page are designed in Figma by the designer, following `docs/DESIGN_BRIEF.md` (the full
+brief, including the FindHouseQuick design principles). Emmanuel approves each design before it is built; progress
+is tracked in `docs/designs.md`.
 
 ## How it is built
 

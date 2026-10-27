@@ -8,14 +8,15 @@ Owner: Emmanuel Chukwuka Oraegbu, Managing Director. Keep this project simple: i
 1. `docs/PLAN.md`: the pages, the look, how it is built, and the steps.
 2. `docs/STATUS.md`: where things stand and the questions still waiting for Emmanuel.
 3. `docs/DEPLOYMENT.md`: hosting, domain and publishing settings.
+4. `docs/DESIGN_BRIEF.md` and `docs/designs.md`: the design brief and which designs are approved.
 
 Update `STATUS.md` at the end of each session. Any setting, password location or manual step goes into
 `DEPLOYMENT.md`, never only in chat.
 
 ## How the work goes
 
-- Follow the design principles in `docs/PLAN.md` (the same as FindHouseQuick): designs made in Figma and approved
-  before any page is built.
+- Follow the design principles in `docs/PLAN.md` (the same as FindHouseQuick): designs made in Figma (by the
+  designer, following `docs/DESIGN_BRIEF.md`) and approved before any page is built. Build only from approved designs.
 - Each piece of work is a branch and a pull request to `main`; it is done when Emmanuel merges it.
 - Do not add pages, features or content he has not asked for. Suggest them instead.
 - Plain language; short side notes for technical terms. No em dashes in anything written for him.
