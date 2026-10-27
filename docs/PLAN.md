@@ -1,52 +1,114 @@
 # Website plan
 
+## Purpose
+
+Show clearly what Projectiles Tech Hub Limited does, advertise its estate projects, share its videos, and make it
+easy to get in touch. The company comes first; the estates are its projects.
+
 ## Pages
 
 | Page | What it shows |
 | --- | --- |
-| Home | Who the company is, the business lines, Primrose Hill Estate, ways to get in touch |
+| Home | Who we are, our business lines at a glance, our estate projects, latest videos, ways to get in touch |
 | About us | Company profile, registration (RC 7987623), the Managing Director |
-| What we do | All business lines, each with a short page and an enquiry button (WhatsApp, call, form) |
-| Projects | Primrose Hill Estate and future projects |
-| Primrose Hill Estate | The estate, plot sizes, how to subscribe, the estate map |
+| What we do | All business lines, each linking to its own page |
+| Business line page (one per line) | What we offer, who it is for, photos or videos, and an enquiry button |
+| Estate projects | Every estate community, each as a card with its status (for example, "Coming soon") |
+| Estate page (one per community) | Everything about that community: location, size, plots, amenities, title, photos, videos, map, and how to register interest or subscribe |
+| Videos | All our videos, with a link to subscribe to our YouTube channel |
 | Contact us | Address, phone, WhatsApp, email, map and an enquiry form |
-| Privacy notice | How enquiry details are used (needed under the Nigeria Data Protection Act because the form collects personal data) |
+| Privacy notice | How enquiry details are used (needed under the Nigeria Data Protection Act because the forms collect personal data) |
 | Page not found | Friendly page with links back to the main pages |
 
-The company comes first; Primrose Hill Estate is one project under it.
+## Business lines
 
-Business lines (to be confirmed): real estate development; construction; project management; cement distribution;
-block moulding; sand dredging and supply; logistics and haulage.
+1. Real estate development
+2. Construction
+3. Project management
+4. Cement distribution
+5. Block moulding
+6. Sand dredging
+7. Logistics and haulage
+
+## Estate projects
+
+Each estate community is one file in `site/src/content/estates/`. Adding a community means adding one file; it then
+appears on the Estate projects page, on the home page, and gets its own page automatically. Each file holds the
+community's name, location, status, summary, details, photos, video links and plot layout (when ready).
+
+Status values: **Coming soon** (shows a teaser and a "register your interest" form), **Now selling**, **Sold out**.
+
+Communities now, all **Coming soon** until their details are final:
+
+| Community | Address on the site |
+| --- | --- |
+| Primrose Hill Estates, Obazuwa | `/estates/primrose-hill-obazuwa` |
+| Primrose Hill Estates, Uzala | `/estates/primrose-hill-uzala` |
+| Primrose Hill Estates, Ekole | `/estates/primrose-hill-ekole` |
+
+## Videos and YouTube
+
+- Videos are uploaded to the company's YouTube channel, not to the website host. YouTube carries the cost of
+  streaming and plays well on slow connections.
+- The website shows the latest videos from the channel automatically. GitHub rebuilds the site once a day and
+  reads the channel's public video list (no YouTube password or key needed), so a new upload appears on the site
+  within a day without anyone touching the website.
+- Videos load only when a visitor taps play, so pages stay light on mobile data.
+- A video can also be placed on a particular estate or business line page by adding its link to that page's file.
+- Every page footer has a "Subscribe on YouTube" link.
+
+## Contacts shown on the site
+
+- Email: projectilestechhub@gmail.com
+- WhatsApp and phone: +234 810 792 7331 (WhatsApp link `https://wa.me/2348107927331`)
+- Address: 39 Ohonre Street, Ugbowo, Benin City, Edo State
+
+Enquiry forms send to projectilestechhub@gmail.com.
 
 ## Look
 
-Start from the June 2026 look unless Emmanuel says otherwise: dark ink and slate with an amber accent; green only on
-the Primrose Hill pages. Designed for phone first, then tablet and desktop.
+A completely new look, not the June 2026 one: trendy and premium. Large, confident photography and video, generous
+white space, refined type, and restrained colour built around the company logo. Easy to scan: a visitor should see
+what we do within the first screen of the home page.
+
+## Design principles (the same ones used for FindHouseQuick)
+
+- **Designs first.** Claude designs every page in Penpot; Emmanuel approves each design before it is built. The
+  design system (colours, type, spacing, icons, buttons, cards, forms) is approved before any page.
+- **Choices shown side by side.** Colour and type options are compared on screen before one is chosen.
+- **Own icon set.** Icons are drawn for this website, to a standard above Font Awesome's paid set, with outline and
+  filled styles. No outside icon set is used.
+- **Fonts that fit Nigeria.** Every font must include the Naira sign and the dotted letters Yoruba and Igbo need.
+  Text is never smaller than 14; reading text is 16.
+- **Spacing in steps of 4**, and every tap target at least 48 by 48.
+- **Responsive at every width.** Each page is designed at 1366 (desktop), 768 (tablet) and 360 (phone). Above 1366
+  the layout stretches, with content kept to a comfortable reading width.
+- **Accessible.** Readable colour contrast (WCAG 2.1 AA), keyboard use, descriptions on images, labels on fields.
 
 ## How it is built
 
 - **Astro**, a tool that turns page templates into plain website files. Nothing runs on the server except the form.
-- **Contact form**: one small PHP file that emails each enquiry to the company. Nothing is stored.
-- **Estate map**: drawn from the plot layout file; no paid map service needed.
+- **Contact and interest forms**: one small PHP file that emails each enquiry to the company. Nothing is stored.
+- **Estate maps**: drawn from each community's plot layout file; no paid map service needed.
 - **Cloudflare** (free) in front of the host for speed and protection.
-- **Publishing**: when a pull request is merged, GitHub builds the site and uploads it to the host automatically.
+- **Publishing**: when a pull request is merged, GitHub builds the site and uploads it to the host automatically;
+  it also rebuilds daily to pick up new YouTube videos.
 
 ## Quality standards
 
 - **Speed**: each page loads quickly on a phone on mobile data; Google's Lighthouse mobile score of 90 or more.
   Images are resized and served in modern formats (AVIF or WebP).
-- **Phones first**: designed at phone width (390), then tablet (768) and desktop (1366), and works at every width in between.
 - **Search engines**: a clear title and description for each page, a sitemap, business details in the format
   Google reads (structured data), and a preview image when links are shared on WhatsApp and social media.
-- **Accessible**: readable colour contrast, works with a keyboard, descriptions on images, labels on form fields.
-- **Form**: spam protection (Cloudflare Turnstile, free), a consent tick box, and a thank-you message.
+- **Forms**: spam protection (Cloudflare Turnstile, free), a consent tick box, and a thank-you message.
 - **Security**: HTTPS everywhere and standard security headers.
 - **Checks**: GitHub checks every pull request (build, broken links, HTML errors) before it can be merged.
 
 ## Steps
 
 1. Emmanuel answers the questions in `STATUS.md`.
-2. Designs of the pages for his approval.
-3. Build the pages.
-4. Set up hosting, domain, form and automatic publishing.
-5. Final checks on phone and desktop, then go live.
+2. Design system in Penpot, approved.
+3. Page designs in Penpot, approved.
+4. Build the pages.
+5. Set up hosting, domain, forms, YouTube feed and automatic publishing.
+6. Final checks on phone and desktop, then go live.
