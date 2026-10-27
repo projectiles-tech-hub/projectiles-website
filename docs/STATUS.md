@@ -20,8 +20,8 @@ Updated: 27 October 2026.
 ## Next
 
 1. [ ] YouTube channel.
-2. [ ] Design system in Penpot, approved.
-3. [ ] Page designs in Penpot, approved.
+2. [ ] Design system in Figma, approved.
+3. [ ] Page designs in Figma, approved.
 4. [ ] Build the pages.
 5. [ ] Hosting, domain, forms, YouTube feed and automatic publishing.
 6. [ ] Go live.

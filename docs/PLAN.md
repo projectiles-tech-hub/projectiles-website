@@ -79,7 +79,7 @@ new look; the shape stays. The final logo is redrawn as a clean SVG (vector) fil
 
 ## Design principles (the same ones used for FindHouseQuick)
 
-- **Designs first.** Claude designs every page in Penpot; Emmanuel approves each design before it is built. The
+- **Designs first.** Claude designs the design system and every page in Figma; Emmanuel approves each design before it is built. The
   design system (colours, type, spacing, icons, buttons, cards, forms) is approved before any page.
 - **Choices shown side by side.** Colour and type options are compared on screen before one is chosen.
 - **Own icon set.** Icons are drawn for this website, to a standard above Font Awesome's paid set, with outline and
@@ -125,8 +125,8 @@ that needs them starts.
 ## Steps
 
 1. Emmanuel answers the questions in `STATUS.md`.
-2. Design system in Penpot, approved.
-3. Page designs in Penpot, approved.
+2. Design system in Figma, approved.
+3. Page designs in Figma, approved.
 4. Build the pages.
 5. Set up hosting, domain, forms, YouTube feed and automatic publishing.
 6. Final checks on phone and desktop, then go live.

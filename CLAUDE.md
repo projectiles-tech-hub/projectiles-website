@@ -14,8 +14,8 @@ Update `STATUS.md` at the end of each session. Any setting, password location or
 
 ## How the work goes
 
-- Follow the design principles in `docs/PLAN.md` (the same as FindHouseQuick): designs made in Penpot and approved
-  before any page is built; Penpot calls made one at a time, one board per request.
+- Follow the design principles in `docs/PLAN.md` (the same as FindHouseQuick): designs made in Figma and approved
+  before any page is built.
 - Each piece of work is a branch and a pull request to `main`; it is done when Emmanuel merges it.
 - Do not add pages, features or content he has not asked for. Suggest them instead.
 - Plain language; short side notes for technical terms. No em dashes in anything written for him.
