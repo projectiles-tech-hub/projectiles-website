@@ -87,6 +87,18 @@ Until both are set, forms rely on the hidden spam trap field.
 4. Server settings (https, security headers, caching, the 404 page) are in `site/public/.htaccess` and are uploaded
    with the site.
 
+## Previewing on Vercel (look and feel only)
+
+Emmanuel's choice (28 October 2026): a preview on Vercel to look at the site; the real hosting stays Namecheap.
+On Vercel everything works except the contact forms (they need Namecheap's PHP), so sending a form shows the
+"not sent" message there.
+
+1. Sign in at vercel.com with GitHub. **Add New, Project**, choose `projectiles-website`, **Import**.
+2. Set **Root Directory** to `site` (Framework: Astro is detected), then **Deploy**.
+3. Until the website is merged into `main`, point Vercel at the build branch: **Settings, Git, Production Branch**,
+   enter `build-site`, save, then **Deployments, Redeploy**.
+4. Open the `.vercel.app` address Vercel shows.
+
 ## Manual changes
 
 | Date | Change | By |
