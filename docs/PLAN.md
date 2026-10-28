@@ -37,6 +37,10 @@ Core services first, then the company's own estates, then the supply businesses 
 6. Sand dredging
 7. Logistics and haulage
 
+IT is not a business line; it appears only in the company profile on About us. The Real estate development page also
+lists the property services offered to clients: property management, property valuation, land administration and
+title perfection, geo-services, and agency and property brokerage.
+
 ## Estate projects
 
 Each estate community is one file in `site/src/content/estates/`. Adding a community means adding one file; it then
