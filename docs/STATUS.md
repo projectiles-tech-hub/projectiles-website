@@ -5,9 +5,14 @@ Updated: 28 October 2026.
 ## Where things stand
 
 - Repository, plan, design brief, logo and skills in place.
-- Claude makes the designs in Figma; the website uses the FindHouseQuick colours, blended with any other colours
-  needed; investment offers on a dedicated Invest page.
-- Nothing designed or built yet.
+- Claude makes the designs in Figma; the website uses Emmanuel's 11 colours (given 28 October 2026); investment
+  offers on a dedicated Invest page.
+- Icons, components, colours and type approved by Emmanuel on 28 October 2026 (links in `designs.md`). This
+  includes the darker green for pressed buttons, the official social media colours for their marks, and the field
+  outline grey #B8BEC7 as chosen.
+- Next: logo options, spacing and grid, motion, and the directions board.
+- Fonts: Source Sans 3 only (the FindHouseQuick font).
+- Nothing built yet.
 
 ## Settled
 
@@ -21,11 +26,13 @@ Updated: 28 October 2026.
 
 ## Questions for Emmanuel
 
-None at the moment.
+None open.
 
 ## Next
 
 1. [ ] Design system in Figma, approved (brief: `DESIGN_BRIEF.md`; progress: `designs.md`).
+   - [x] Icons, components, colours and type approved (28 October 2026).
+   - [ ] Logo options, spacing and grid, motion and directions boards.
 2. [ ] Page designs in Figma, approved.
 3. [ ] Build the pages.
 4. [ ] Hosting, domain, forms, YouTube feed and automatic publishing.
