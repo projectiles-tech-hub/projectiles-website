@@ -199,14 +199,17 @@ Brand marks to place (official versions): WhatsApp, YouTube, Facebook, Instagram
   - Video card (thumbnail, title, length, date, play button).
   - Fact or figure card (for numbers such as years, projects or hectares).
 - **Status badges** for estates: **Coming soon**, **Now selling**, **Sold out**.
-- **Video player:** the thumbnail with a play button before playing; the YouTube player after a tap.
+- **Video player:** the thumbnail with a play button before playing; the YouTube player after a tap. It must fit
+  any page and any width, because a video can be placed on any page.
 - **Section header** (small label, heading, short text, optional action).
 - **Breadcrumbs** for inner pages.
 - **Forms:** text field, phone field (with +234), email field, select, text area, checkbox (consent), radio;
   each with label, help text, error message and success state. The spam check (Cloudflare Turnstile) needs a
   small area near the send button.
 - **Notices:** success, error and information messages; the form thank-you message.
-- **Photo gallery** with a full-screen viewer.
+- **Photo gallery** with a full-screen viewer that shows photos and videos, with next and previous.
+- **Investment offer card** (offer name, what it is in one line, minimum amount, term, expected return, link to
+  the offer's page).
 - **Map block** (an embedded map or a styled static map with a pin and a "Get directions" link).
 - **Empty and placeholder states:** for a missing photo, and for an estate with no videos yet.
 
@@ -267,20 +270,26 @@ Both states must work for any community name and length of text.
 
 ### 8.7 Videos
 Introduction and "Subscribe on YouTube"; a featured video; a grid of video cards; optional filter chips by topic
-(for example Estates, Construction, Company). The list fills automatically from the YouTube channel.
+(for example Estates, Construction, Company). The list fills automatically from the YouTube channel, newest
+first. Videos may also appear on any other page, using the video player component.
 
-### 8.8 Contact us
+### 8.8 Gallery
+Introduction; a grid of photos and videos together (videos marked with a play icon); optional filter chips by
+topic, matching the Videos page; tapping any item opens the full-screen viewer. The grid must work with mixed
+photo shapes and with few or many items.
+
+### 8.9 Contact us
 Contacts (WhatsApp, phone, email, address) with one-tap actions; the enquiry form (name, phone, email, business line
 of interest, message, consent); map with "Get directions"; opening hours if Emmanuel provides them.
 
-### 8.9 Invest
+### 8.10 Invest
 A page dedicated to the company's investment offers. Other pages (home, about, estates) may link to it, but offers
-are presented only here.
+are presented only here and on each offer's own page (Section 8.11).
 
 1. Hero: invest with Projectiles Tech Hub Limited; one supporting line; action "Talk to us about investing".
 2. Why invest with us: the company's track record and how the business lines support each other.
-3. **The offers:** one card or section per offer, each with its name, what it is, what backs it, the minimum amount,
-   the term and the expected return, and an "Enquire" action. Design it so offers can be added or removed. Offers
+3. **The offers:** one investment offer card per offer (name, what it is in one line, minimum amount, term and
+   expected return); tapping a card opens the offer's own page. Design it so offers can be added or removed. Offers
    from company records, to confirm with Emmanuel: trade finance notes; asset-backed notes; land-secured growth units
    tied to Primrose Hill Estates plots. Use realistic sample figures, marked as samples, until he supplies them.
 4. How it works: simple steps from enquiry to investment.
@@ -288,13 +297,28 @@ are presented only here.
 6. Documents and disclosures: a block for terms, risk notes and downloadable documents.
 7. Investor enquiry form: name, phone, email, offer of interest, amount range, message, consent.
 
-### 8.10 Privacy notice
+### 8.11 Investment offer page (one design, used for every offer)
+1. Hero: offer name, one supporting line, the key figures (minimum amount, term, expected return, marked as
+   samples until confirmed), and an "Enquire about this offer" action.
+2. What it is and what backs it.
+3. Key terms: minimum amount, term, expected return, how and when returns are paid, how to exit.
+4. Risks, in plain language.
+5. How to invest: simple steps from enquiry to investment.
+6. Documents for this offer (downloads).
+7. Video, when available.
+8. Frequently asked questions about this offer.
+9. Investor enquiry form with this offer already selected; WhatsApp and phone beside it.
+10. Links to the other offers and back to the Invest page.
+
+Design it so it works for any offer, including offers with no video or few documents.
+
+### 8.12 Privacy notice
 A plain, readable long-text page (headings, paragraphs, lists). The text will be supplied.
 
-### 8.11 Page not found
+### 8.13 Page not found
 A friendly message, a search or the main links, and a way back home.
 
-### 8.12 Form results
+### 8.14 Form results
 The thank-you state and the error state of each form (shown in place on the page).
 
 ## 9. Order of work and delivery
@@ -303,9 +327,10 @@ The thank-you state and the error state of each form (shown in place on the page
    short hero, at desktop and phone. Emmanuel chooses one.
 2. **Design system:** everything in Section 7, built as variables, styles and components. Approved.
 3. **Pages**, in this order, each at 1366, 768 and 360: Home; What we do; Business line page; Estate projects;
-   Estate page (both states); Invest; Videos; Contact us; About us; Privacy notice; Page not found.
+   Estate page (both states); Invest; Investment offer page; Videos; Gallery; Contact us; About us; Privacy notice;
+   Page not found.
 4. **Prototype:** link the pages so the main journeys can be clicked through on a phone: home to a business line
-   to WhatsApp; home to an estate to the interest form; home to a video; home to the Invest page to the investor enquiry form.
+   to WhatsApp; home to an estate to the interest form; home to a video; home to the Invest page to an offer's page to the investor enquiry form; home to the Gallery to the full-screen viewer.
 
 **Figma file layout:**
 
@@ -335,7 +360,8 @@ recorded there as "Approved" or "Changes asked".
 - **Tone:** confident, clear, warm, and professional. Short sentences. No jargon.
 - **Spelling:** British English (as used in Nigeria): colour, programme, moulding.
 - **Money:** written with the Naira sign, for example ₦25,000,000.
-- **Investment offers** appear only on the Invest page (Section 8.9); other pages may link to it.
+- **Investment offers** appear only on the Invest page (Section 8.10) and each offer's own page (Section 8.11);
+  other pages may link to them.
 
 ## 11. Fixed details to use
 
