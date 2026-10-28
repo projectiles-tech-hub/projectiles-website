@@ -29,9 +29,10 @@ States: **Not started**, **To review** (sent to Emmanuel), **Changes asked** (wi
 | 04 | Estate projects | | | | Not started | |
 | 05 | Estate page, coming soon | | | | Not started | |
 | 06 | Estate page, now selling | | | | Not started | |
-| 07 | Videos | | | | Not started | |
-| 08 | Contact us | | | | Not started | |
-| 09 | About us | | | | Not started | |
-| 10 | Privacy notice | | | | Not started | |
-| 11 | Page not found | | | | Not started | |
-| 12 | Prototype (linked journeys) | | | | Not started | |
+| 07 | Invest | | | | Not started | |
+| 08 | Videos | | | | Not started | |
+| 09 | Contact us | | | | Not started | |
+| 10 | About us | | | | Not started | |
+| 11 | Privacy notice | | | | Not started | |
+| 12 | Page not found | | | | Not started | |
+| 13 | Prototype (linked journeys) | | | | Not started | |
