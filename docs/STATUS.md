@@ -15,8 +15,13 @@ Updated: 28 October 2026.
 - Fonts: Source Sans 3 only (the FindHouseQuick font).
 - Page designs: all approved 28 October 2026, with placeholders (photos, Managing Director profile, investment
   offers) that Emmanuel will replace later. Two components were added for them: Plot map and Reason item.
-- Website being built in `site/` (branch `build-site`).
-- Nothing built yet.
+- Website built in `site/` (branch `build-site`, pull request open): all pages, the contact form, the YouTube video
+  list, the gallery, the plot map, search engine files, icons and the share image. Checks pass: HTML, links,
+  accessibility (phone and desktop) and page width.
+- Placeholders still in use: photos, the Managing Director profile and photo, investment offer figures, estate
+  details (all three estates show "Coming soon"), gallery items, the privacy notice text, opening hours (hidden until
+  given), social media links other than YouTube (hidden until given), and the Turnstile key.
+- Automatic publishing is ready; it starts once the hosting is bought and the settings in `DEPLOYMENT.md` are added.
 
 ## Settled
 
@@ -33,13 +38,15 @@ Updated: 28 October 2026.
 
 ## Questions for Emmanuel
 
-1. **Later, when ready**: real photos, the Managing Director profile and photo, the investment offer details, and
-   the estate details. Placeholders are used until then.
+1. **Later, when ready**: real photos, the Managing Director profile and photo, the investment offer details, the
+   estate details, opening hours, other social media links, and the final privacy notice. Placeholders are used
+   until then.
+2. **Cloudflare Security Audit skill**: please switch it on, so the finished build can be checked before going live.
 
 ## Next
 
 1. [x] Design system in Figma, approved (28 October 2026).
 2. [x] Page designs in Figma, approved (28 October 2026).
-3. [ ] Build the pages.
+3. [x] Build the pages (28 October 2026, waiting for merge).
 4. [ ] Hosting, domain, forms, YouTube feed and automatic publishing.
 5. [ ] Go live.

@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import ContactList from '../../components/ContactList.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import MapBlock from '../../components/MapBlock.astro';
+import { company, businessLines } from '../../config/company';
+---
+<Base title="Contact us" current="/contact/" description="Contact Projectiles Tech Hub Limited: WhatsApp or call +234 810 792 7331, email projectilestechhub@gmail.com, or visit 39 Ohonre Street, Ugbowo, Benin City.">
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'Contact us' }]} heading="Contact us" noPhoto text="Chat on WhatsApp for the quickest reply, call us, email us or visit our office in Ugbowo, Benin City.">
+    <Fragment slot="actions"><Button variant="whatsapp" /><Button variant="secondary" href={company.phoneHref} label={`Call\u00a0${company.phone}`} /></Fragment>
+  </Hero>
+  <Section bg="page">
+    <div class="two-col top">
+      <div class="stack reveal" style="--gap:28px">
+        <SectionHeader label="Get in touch" heading="Ways to reach us" />
+        <ContactList />
+        {company.openingHours && <div><p class="t-label c-2">Opening hours</p><p>{company.openingHours}</p></div>}
+      </div>
+      <div class="stack reveal" style="--gap:24px">
+        <SectionHeader label="Enquiry form" heading="Send us a message" text="We reply within one working day." />
+        <EnquiryForm id="enquiry" form="Contact form" fields={[
+          { type: 'text', name: 'name', label: 'Full name', required: true, placeholder: 'Your full name' },
+          { type: 'phone', name: 'phone', label: 'Phone or WhatsApp number', help: 'We call or WhatsApp you on this number.', required: true },
+          { type: 'email', name: 'email', label: 'Email', placeholder: 'you@example.com' },
+          { type: 'select', name: 'line', label: 'Business line', options: [...businessLines.map((l) => l.name), 'Estate projects', 'Investing', 'Something else'] },
+          { type: 'textarea', name: 'message', label: 'Message', required: true, help: 'A few lines is enough.' },
+        ]} />
+      </div>
+    </div>
+  </Section>
+  <Section>
+    <div class="reveal"><SectionHeader label="Visit us" heading="Our office" /></div>
+    <MapBlock />
+  </Section>
+</Base>

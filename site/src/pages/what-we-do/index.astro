@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import BusinessLineCard from '../../components/BusinessLineCard.astro';
+import Photo from '../../components/Photo.astro';
+import Checks from '../../components/Checks.astro';
+import Cta from '../../components/Cta.astro';
+import { businessLines, lineBySlug } from '../../config/company';
+const core = businessLines.filter((l) => l.group === 'core');
+const supply = businessLines.filter((l) => l.group === 'supply');
+const re = lineBySlug('real-estate-development')!;
+---
+<Base title="What we do" current="/what-we-do/" description="Project management and construction for private and public clients, our own Primrose Hill Estates and property services, and our own cement, blocks, sand and haulage.">
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'What we do' }]} heading="What we do" ratio="3:2" mobileRatio="16:9"
+    text="At our core, we plan, manage and deliver construction projects for private and public clients. Our own estates and supply businesses make every project stronger.">
+    <Fragment slot="actions"><Button href="/contact/" label="Talk to us about a project" /><Button variant="whatsapp" /></Fragment>
+  </Hero>
+  <Section bg="page">
+    <div class="reveal"><SectionHeader label="Core services" heading="We plan, manage and deliver construction projects" text="Professional discipline in scheduling, budgeting, procurement and quality control, from first plan to handover." /></div>
+    <div class="grid t2 d2">{core.map((l) => <div class="reveal flex"><BusinessLineCard line={l} media="photo" /></div>)}</div>
+  </Section>
+  <Section>
+    <div class="two-col">
+      <div class="stack reveal" style="--gap:28px">
+        <SectionHeader label="Real estate" heading="Our own estates and property services" text="We develop our own estate projects, including the Primrose Hill Estates range, and offer property services to clients." />
+        <Checks items={re.services.map(([t]) => t)} />
+        <div><Button variant="secondary" href={`/what-we-do/${re.slug}/`} label="Real estate development" /></div>
+      </div>
+      <div class="reveal"><Photo ratio="4:3" /></div>
+    </div>
+  </Section>
+  <Section bg="page">
+    <div class="reveal"><SectionHeader label="Our supply businesses" heading="Our own materials and trucks" text="Cement distribution, block moulding, sand dredging, and logistics and haulage give us more control over cost, quality and time than firms that rely on outside suppliers." /></div>
+    <div class="grid t2 d4">{supply.map((l) => <div class="reveal flex"><BusinessLineCard line={l} media="photo" /></div>)}</div>
+  </Section>
+  <Cta label="Start a project" heading="Tell us what you are planning" text="Chat with us on WhatsApp for the quickest reply, or send the contact form and we will call you back." />
+</Base>
+<style>.flex { display: flex; } .flex > :global(*) { flex: 1; }</style>

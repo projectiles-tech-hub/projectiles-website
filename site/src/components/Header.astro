@@ -1,0 +1,130 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import { nav, company } from '../config/company';
+interface Props { current?: string }
+const { current } = Astro.props;
+const menuLinks = [{ label: 'Home', href: '/' }, ...nav, { label: 'Contact us', href: '/contact/' }];
+---
+<header class="hdr">
+  <div class="wrap hdr__bar">
+    <a href="/" class="hdr__logo" aria-label={`${company.name}, home`}><Logo height={48} class="hdr__logo-img" /></a>
+    <nav class="hdr__nav" aria-label="Main">
+      <ul>
+        {nav.map((l) => (
+          <li><a href={l.href} class="hdr__link" aria-current={current === l.href ? 'page' : undefined}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="hdr__actions">
+      <Button variant="whatsapp" size="small" class="hdr__wa" />
+      <button class="hdr__menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-open>
+        <Icon name="menu" />
+        <span class="visually-hidden">Open menu</span>
+      </button>
+    </div>
+  </div>
+  <div class="menu on-dark" id="site-menu" hidden data-menu role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="wrap menu__bar">
+      <a href="/" aria-label={`${company.name}, home`}><Logo onDark height={40} /></a>
+      <button class="menu__close" type="button" data-menu-close>
+        <Icon name="close" />
+        <span class="visually-hidden">Close menu</span>
+      </button>
+    </div>
+    <nav class="wrap menu__links" aria-label="Menu">
+      <ul>
+        {menuLinks.map((l) => (
+          <li><a href={l.href} class="t-h3" aria-current={current === l.href ? 'page' : undefined}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="wrap menu__foot">
+      <Button variant="whatsapp" full />
+      <p class="t-small"><a href={company.phoneHref}>{company.phone}</a><br /><a href={`mailto:${company.email}`}>{company.email}</a></p>
+    </div>
+  </div>
+</header>
+<script>
+  const open = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+  const close = document.querySelector<HTMLButtonElement>('[data-menu-close]');
+  if (open && menu && close) {
+    const setOpen = (on: boolean) => {
+      open.setAttribute('aria-expanded', String(on));
+      if (on) {
+        menu.hidden = false;
+        requestAnimationFrame(() => menu.classList.add('is-open'));
+        document.documentElement.style.overflow = 'hidden';
+        close.focus();
+      } else {
+        menu.classList.remove('is-open');
+        document.documentElement.style.overflow = '';
+        const done = () => { menu.hidden = true; };
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ? done() : setTimeout(done, 200);
+        open.focus();
+      }
+    };
+    open.addEventListener('click', () => setOpen(true));
+    close.addEventListener('click', () => setOpen(false));
+    menu.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Tab') {
+        const f = [...menu.querySelectorAll<HTMLElement>('a, button')];
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+</script>
+<style>
+  .hdr { position: relative; z-index: 20; background: var(--bg-surface); }
+  .hdr__bar { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: 16px; }
+  .hdr__logo { display: inline-flex; padding: 8px 0; }
+  .hdr__logo :global(svg) { height: 40px; }
+  .hdr__nav { display: none; }
+  .hdr__nav ul { display: flex; gap: 4px; list-style: none; padding: 0; }
+  .hdr__link {
+    position: relative; display: inline-flex; align-items: center; min-height: 48px; padding: 0 8px;
+    font: 500 16px/24px var(--font); color: var(--text); text-decoration: none;
+    transition: color var(--t-hover) var(--ease-standard);
+  }
+  .hdr__link:hover { color: var(--link); }
+  .hdr__link[aria-current='page']::after {
+    content: ''; position: absolute; left: 50%; bottom: 6px; width: 24px; height: 2px; margin-left: -12px; border-radius: 999px; background: var(--green-700);
+  }
+  .hdr__actions { display: flex; align-items: center; gap: 12px; }
+  .hdr__wa { display: none !important; }
+  .hdr__menu-btn, .menu__close {
+    display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px;
+    border: 0; border-radius: 999px; background: transparent; color: inherit; cursor: pointer;
+    transition: background-color var(--t-hover) var(--ease-standard);
+  }
+  .hdr__menu-btn:hover { background: var(--green-50); }
+  .menu__close:hover { background: var(--green-800); }
+  @media (min-width: 768px) {
+    .hdr__bar { min-height: 80px; }
+    .hdr__logo :global(svg) { height: 48px; }
+    .hdr__wa { display: inline-flex !important; }
+  }
+  @media (min-width: 1200px) {
+    .hdr__nav { display: block; }
+    .hdr__menu-btn { display: none; }
+  }
+  .menu {
+    position: fixed; inset: 0; z-index: 50; overflow-y: auto; background: var(--bg-inverse); color: var(--on-inverse);
+    opacity: 0; transform: translateY(-16px);
+    transition: opacity var(--t-exit) var(--ease-leave), transform var(--t-exit) var(--ease-leave);
+  }
+  .menu.is-open { opacity: 1; transform: none; transition: opacity var(--t-menu) var(--ease-arrive), transform var(--t-menu) var(--ease-arrive); }
+  .menu__bar { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
+  .menu__links ul { list-style: none; padding: 24px 0 0; }
+  .menu__links a { display: flex; align-items: center; min-height: 56px; color: var(--on-inverse-2); text-decoration: none; }
+  .menu__links a[aria-current='page'] { color: var(--white); box-shadow: inset 3px 0 0 var(--green-50); padding-left: 12px; } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .menu__links a:hover { color: var(--white); }
+  .menu__foot { display: flex; flex-direction: column; gap: 16px; padding-top: 24px; padding-bottom: 40px; }
+  .menu__foot a { color: var(--on-inverse-2); }
+  .menu :focus-visible { outline-color: var(--white); }
+</style>

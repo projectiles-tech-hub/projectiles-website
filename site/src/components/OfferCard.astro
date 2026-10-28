@@ -1,0 +1,25 @@
+---
+import CardLink from './CardLink.astro';
+interface Props { href: string; name: string; line: string; minimum: string; term: string; expectedReturn: string; sample?: boolean; headingLevel?: 'h2' | 'h3' }
+const { href, name, line, minimum, term, expectedReturn, sample, headingLevel = 'h3' } = Astro.props;
+const H = headingLevel;
+---
+<article class="card offer">
+  <div class="card__body offer__body">
+    {sample && <p class="t-label offer__sample">Sample figures</p>}
+    <H class="t-h4 card__title"><a href={href} class="card__stretch">{name}</a></H>
+    <p class="c-2">{line}</p>
+    <dl class="offer__figs">
+      <div><dt class="t-small c-2">Minimum</dt><dd class="t-price">{minimum}</dd></div>
+      <div><dt class="t-small c-2">Term</dt><dd class="t-price">{term}</dd></div>
+      <div><dt class="t-small c-2">Expected return</dt><dd class="t-price">{expectedReturn}</dd></div>
+    </dl>
+    <CardLink label="See offer details" />
+  </div>
+</article>
+<style>
+  .offer__body { gap: 12px !important; padding: 24px !important; }
+  .offer__sample { color: var(--ink-600); }
+  .offer__figs { padding-top: 8px; }
+  .offer__figs div { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+</style>

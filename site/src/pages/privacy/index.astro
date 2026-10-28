@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Checks from '../../components/Checks.astro';
+import { company, fullAddress } from '../../config/company';
+// Sample text until the final privacy notice is supplied.
+const sections: [string, string, string[]?][] = [
+  ['Who we are', `${company.name} (${company.rc}), ${fullAddress}. We are responsible for the personal details you give us through this website.`],
+  ['What we collect', 'When you send a form, we collect only what you type in it:', ['Your name', 'Your phone or WhatsApp number', 'Your email address', 'Your message and the business line, estate or offer you ask about']],
+  ['Why we collect it', 'To reply to your enquiry and, if you ask, to keep you updated about an estate or an offer. We do not sell your details.'],
+  ['How long we keep it', 'We keep enquiry details only as long as needed to deal with your enquiry, then delete them.'],
+  ['Videos and spam checks', 'Videos play from YouTube only when you tap play. Forms are protected by Cloudflare Turnstile, which checks that you are not a robot.'],
+  ['Your rights', 'Under the Nigeria Data Protection Act 2023 you can ask to see, correct or delete your details at any time.'],
+  ['Contact us', `Email ${company.email} or call ${company.phone} about anything in this notice.`],
+];
+---
+<Base title="Privacy notice" description="How Projectiles Tech Hub Limited uses the details you give us when you contact us or fill in a form.">
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'Privacy notice' }]} heading="Privacy notice" noPhoto text="How we use the details you give us when you contact us or fill in a form." />
+  <section class="section bg-surface" aria-label="Notice">
+    <div class="wrap">
+      <div class="prose">
+        <p class="t-small c-hint">Sample text. The final notice will be supplied. Last updated: 28 October 2026.</p>
+        {sections.map(([h, p, list]) => (<><h2 class="t-h3">{h}</h2><p class="c-2">{p}</p>{list && <Checks items={list} />}</>))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .prose { max-width: 720px; display: flex; flex-direction: column; gap: 16px; }
+  .prose h2 { margin-top: 24px; }
+  @media (min-width: 768px) { .prose { gap: 20px; } }
+</style>

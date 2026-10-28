@@ -1,0 +1,38 @@
+---
+// Shows only a picture until tapped, then loads the YouTube player (keeps pages light on mobile data).
+import Icon from './Icon.astro';
+interface Props { id: string; title: string; length?: string }
+const { id, title, length } = Astro.props;
+---
+<div class="vp" data-video={id}>
+  <button type="button" class="vp__poster" data-video-play aria-label={`Play video: ${title}`}>
+    <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" loading="lazy" width="480" height="360" />
+    <span class="vp__play" aria-hidden="true"><Icon name="play" variant="duotone" size={32} /></span>
+    <span class="vp__cap" aria-hidden="true"><span class="t-strong">{title}</span>{length && <span class="t-small">{length}</span>}</span>
+  </button>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-video]').forEach((box) => {
+    box.querySelector('[data-video-play]')?.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${box.dataset.video}?autoplay=1&rel=0`;
+      f.title = box.querySelector('.vp__cap .t-strong')?.textContent ?? 'Video';
+      f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      box.replaceChildren(f);
+      f.focus();
+    });
+  });
+</script>
+<style>
+  .vp { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--bg-subtle); overflow: hidden; }
+  .vp :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .vp__poster { position: absolute; inset: 0; padding: 0; border: 0; background: none; cursor: pointer; width: 100%; }
+  .vp__poster img { width: 100%; height: 100%; object-fit: cover; }
+  .vp__play { position: absolute; left: 50%; top: 50%; width: 80px; height: 80px; margin: -40px 0 0 -40px; border-radius: 999px; background: var(--white); color: var(--green-700); display: flex; align-items: center; justify-content: center; transition: transform var(--t-hover) var(--ease-standard); }
+  .vp__poster:hover .vp__play { transform: scale(1.06); }
+  .vp__cap { position: absolute; left: 16px; bottom: 16px; right: 16px; display: flex; gap: 12px; align-items: baseline; width: max-content; max-width: calc(100% - 32px); padding: 8px 12px; background: var(--bg-inverse); color: var(--white); text-align: left; }
+  .vp__cap .t-strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .vp__cap .t-small { color: var(--green-50); flex: none; }
+  @media (max-width: 767px) { .vp__play { width: 56px; height: 56px; margin: -28px 0 0 -28px; } .vp__cap { left: 8px; bottom: 8px; } }
+</style>

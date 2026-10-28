@@ -1,0 +1,10 @@
+---
+interface Props { items: [string, string][] }
+const { items } = Astro.props;
+---
+<dl class="terms">{items.map(([a, b]) => <div><dt class="t-label c-2">{a}</dt><dd class="t-strong">{b}</dd></div>)}</dl>
+<style>
+  .terms { max-width: 820px; }
+  .terms div { display: flex; flex-direction: column; gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--line); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  @media (min-width: 768px) { .terms div { flex-direction: row; gap: 24px; } .terms dt { flex: 0 0 260px; } }
+</style>

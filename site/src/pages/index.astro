@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Button from '../components/Button.astro';
+import BusinessLineCard from '../components/BusinessLineCard.astro';
+import EstateCard from '../components/EstateCard.astro';
+import VideoCard from '../components/VideoCard.astro';
+import EmptyState from '../components/EmptyState.astro';
+import Photo from '../components/Photo.astro';
+import ContactList from '../components/ContactList.astro';
+import { businessLines, reasons, company } from '../config/company';
+import { getCollection } from 'astro:content';
+import { getVideos } from '../data/videos';
+const estates = (await getCollection('estates')).filter((e) => !e.id.startsWith('sample')).sort((a, b) => a.data.order - b.data.order);
+const videos = (await getVideos()).slice(0, 4);
+---
+<Base title="Home" description="Projectiles Tech Hub Limited plans, manages and delivers construction projects for private and public clients in Benin City, Edo State, backed by our own estates and supply chain.">
+  <Hero label="Benin City, Edo State" heading="Construction projects, planned and delivered." display ratio="1:1" mobileRatio="16:9"
+    text="We bring professional discipline to scheduling, budgeting, procurement and quality for private and public clients, backed by our own estates and supply chain.">
+    <Fragment slot="actions">
+      <Button href="/what-we-do/" label="What we do" />
+      <Button variant="whatsapp" />
+    </Fragment>
+  </Hero>
+
+  <section class="section bg-page" aria-labelledby="wwd">
+    <div class="wrap">
+      <div class="wwd">
+        <div class="wwd__head reveal">
+          <SectionHeader label="What we do" heading="One company, from plan to handover" id="wwd"
+            text="At our core, we plan, manage and deliver construction projects. Our own estates and supply businesses make every project stronger." />
+        </div>
+        {businessLines.map((l) => <div class="reveal"><BusinessLineCard line={l} /></div>)}
+      </div>
+    </div>
+  </section>
+
+  <Section>
+    <div class="reveal"><SectionHeader label="Estate projects" heading="Primrose Hill Estates" id="estates"
+      text="Our own estate developments, planned and built on secure legal footing. Three communities are coming soon."
+      action={{ label: 'See all estates', href: '/estates/' }} /></div>
+    <div class="grid t2 d3">
+      {estates.map((e) => <div class="reveal"><EstateCard href={`/estates/${e.id}/`} name={e.data.name} location={e.data.location} summary={e.data.summary} status={e.data.status} word={e.data.word} photo={e.data.photo} /></div>)}
+    </div>
+  </Section>
+
+  <Section bg="page">
+    <div class="two-col reveal">
+      <SectionHeader label="Why work with us" heading="Quality projects, on time and within budget"
+        text="That is what matters in construction. These are the strengths that let us deliver it, every time." />
+      <Photo ratio="3:2" />
+    </div>
+    <div class="reasons">
+      {reasons.map(([t, long, short]) => (
+        <div class="reason reveal">
+          <h3 class="t-h4">{t}</h3>
+          <p class="c-2"><span class="r-long">{long}</span><span class="r-short">{short}</span></p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section>
+    <div class="vhead reveal">
+      <SectionHeader label="Videos" heading="Latest from our YouTube channel" text="Site tours, progress updates and a look inside our yards." />
+      <Button variant="secondary" href={company.youtube.subscribeUrl} label="Subscribe on YouTube" />
+    </div>
+    {videos.length ? (
+      <div class="grid t2 d3 vids">{videos.map((v, i) => <div class:list={['reveal', { 'v4': i === 3 }]}><VideoCard id={v.id} title={v.title} date={v.date} /></div>)}</div>
+    ) : (
+      <EmptyState title="Watch our videos on YouTube" text="Site tours, progress updates and estate news are on our channel." action={{ label: 'Go to our YouTube channel', href: company.youtube.url }} />
+    )}
+  </Section>
+
+  <Section bg="page">
+    <div class="two-col top">
+      <div class="stack reveal" style="--gap:32px">
+        <SectionHeader label="Get in touch" heading="Talk to us today" text="Chat on WhatsApp for the quickest reply, or call, email or visit our office." />
+        <div class="acts"><Button variant="whatsapp" /><Button variant="secondary" href="/contact/" label="Use the contact form" /></div>
+      </div>
+      <div class="reveal"><ContactList /></div>
+    </div>
+  </Section>
+</Base>
+<style>
+  .wwd { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  .wwd > div { display: flex; }
+  .wwd > div > :global(*) { flex: 1; }
+  .wwd__head { margin-bottom: 8px; }
+  @media (min-width: 768px) { .wwd { gap: 24px; grid-template-columns: repeat(2, minmax(0, 1fr)); } .wwd__head { margin: 0; } }
+  @media (min-width: 1200px) { .wwd { grid-template-columns: repeat(4, minmax(0, 1fr)); } .wwd__head :global(.sh) { gap: 16px; } }
+  .reasons { display: grid; gap: 0 24px; grid-template-columns: 1fr; }
+  @media (min-width: 768px) { .reasons { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 32px; } }
+  @media (min-width: 1200px) { .reasons { row-gap: 40px; } }
+  .reason { border-top: 2px solid var(--green-700); padding: 20px 0 24px; display: flex; flex-direction: column; gap: 8px; }
+  .r-short { display: none; }
+  @media (max-width: 767px) { .r-long { display: none; } .r-short { display: inline; } }
+  .vhead { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+  @media (min-width: 1200px) { .vhead { flex-direction: row; justify-content: space-between; align-items: flex-end; } }
+  .vids .v4 { display: none; }
+  @media (min-width: 768px) and (max-width: 1199px) { .vids .v4 { display: block; } }
+  .acts { display: flex; flex-wrap: wrap; gap: 16px; }
+  @media (max-width: 767px) { .acts { flex-direction: column; } .acts :global(.btn) { width: 100%; } }
+</style>

@@ -1,0 +1,27 @@
+---
+// A grid of short points with a deep green line above each (Reason item).
+interface Props { items: [string, string][]; cols?: 2 | 3 | 4; numbered?: boolean; single?: boolean }
+const { items, cols = 3, numbered = false, single = false } = Astro.props;
+---
+<div class:list={['rs', `rs--${cols}`, { 'rs--single': single }]}>
+  {items.map(([t, x], i) => (
+    <div class="rs__item reveal">
+      <h3 class="t-h4">{numbered ? `${i + 1}. ${t}` : t}</h3>
+      <p class="c-2">{x}</p>
+    </div>
+  ))}
+</div>
+<style>
+  .rs { display: grid; gap: 16px 24px; }
+  .rs__item { border-top: 2px solid var(--green-700); padding: 20px 0 8px; display: flex; flex-direction: column; gap: 8px; }
+  @media (min-width: 768px) {
+    .rs { row-gap: 32px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .rs--single { grid-template-columns: 1fr; max-width: 820px; }
+  }
+  @media (min-width: 1200px) {
+    .rs { row-gap: 40px; }
+    .rs--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .rs--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .rs--single { grid-template-columns: 1fr; }
+  }
+</style>

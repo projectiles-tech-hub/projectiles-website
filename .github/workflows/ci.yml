@@ -33,5 +33,8 @@ jobs:
         working-directory: site
         run: |
           pnpm install --frozen-lockfile
+          pnpm exec playwright install --with-deps chromium
           pnpm build
+          pnpm test
+          SAMPLES=1 pnpm build
           pnpm test

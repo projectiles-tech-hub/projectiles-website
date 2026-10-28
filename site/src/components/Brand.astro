@@ -1,0 +1,17 @@
+---
+// Official marks of other companies, used under their brand rules.
+import whatsapp from '../assets/brands/whatsapp.svg?raw';
+import youtube from '../assets/brands/youtube.svg?raw';
+import facebook from '../assets/brands/facebook.svg?raw';
+import instagram from '../assets/brands/instagram.svg?raw';
+import x from '../assets/brands/x.svg?raw';
+import linkedin from '../assets/brands/linkedin.svg?raw';
+import tiktok from '../assets/brands/tiktok.svg?raw';
+interface Props { name: 'whatsapp' | 'youtube' | 'facebook' | 'instagram' | 'x' | 'linkedin' | 'tiktok'; size?: number; color?: string; class?: string }
+const { name, size = 24, color = 'currentColor', class: cls } = Astro.props;
+const src = { whatsapp, youtube, facebook, instagram, x, linkedin, tiktok }[name];
+const paths = [...src.matchAll(/<path[^>]*\sd="([^"]+)"/g)].map((m) => m[1]);
+---
+<svg class:list={['brand', cls]} width={size} height={size} viewBox="0 0 24 24" fill={color} aria-hidden="true" focusable="false">
+  {paths.map((d) => <path d={d} />)}
+</svg>

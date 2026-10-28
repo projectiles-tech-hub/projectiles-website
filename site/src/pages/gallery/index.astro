@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import Gallery from '../../components/Gallery.astro';
+import FilterChips from '../../components/FilterChips.astro';
+import { getCollection } from 'astro:content';
+const items = (await getCollection('gallery')).sort((a, b) => a.data.order - b.data.order).map((g) => g.data);
+const topics = ['Estates', 'Construction', 'Supply', 'Company'].filter((t) => items.some((i) => i.topic === t));
+---
+<Base title="Gallery" current="/gallery/" description="Photos and videos from our sites, yards and estates in and around Benin City.">
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'Gallery' }]} heading="Gallery" noPhoto text="Photos and videos from our sites, yards and estates. Tap any one to see it full screen." />
+  <Section label="Photos and videos">
+    {topics.length > 1 && <FilterChips topics={topics} target="gallery-grid" label="Filter the gallery by topic" />}
+    <Gallery items={items} id="gallery-grid" />
+  </Section>
+</Base>

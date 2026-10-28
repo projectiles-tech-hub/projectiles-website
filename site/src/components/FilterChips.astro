@@ -1,0 +1,27 @@
+---
+interface Props { topics: string[]; target: string; label: string }
+const { topics, target, label } = Astro.props;
+---
+<div class="chips" role="group" aria-label={label} data-chips={target}>
+  <button type="button" class="chip" aria-pressed="true" data-topic="all">All</button>
+  {topics.map((t) => <button type="button" class="chip" aria-pressed="false" data-topic={t}>{t}</button>)}
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-chips]').forEach((group) => {
+    const list = document.getElementById(group.dataset.chips!);
+    if (!list) return;
+    group.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-topic]');
+      if (!b) return;
+      group.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      const t = b.dataset.topic;
+      list.querySelectorAll<HTMLElement>('[data-topic]').forEach((item) => { item.hidden = !(t === 'all' || item.dataset.topic === t); });
+    });
+  });
+</script>
+<style>
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { min-height: 48px; padding: 0 20px; border-radius: 999px; border: 0; background: transparent; color: var(--link); box-shadow: inset 0 0 0 1.5px var(--green-700); font: 500 14px/20px var(--font); cursor: pointer; transition: background-color var(--t-hover) var(--ease-standard); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .chip:hover { background: var(--green-50); }
+  .chip[aria-pressed='true'] { background: var(--green-700); color: var(--white); }
+</style>

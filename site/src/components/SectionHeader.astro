@@ -1,0 +1,20 @@
+---
+import Button from './Button.astro';
+interface Props { label?: string; heading: string; text?: string; action?: { label: string; href: string }; level?: 'h1' | 'h2'; id?: string; dark?: boolean }
+const { label, heading, text, action, level = 'h2', id, dark } = Astro.props;
+const H = level;
+---
+<div class:list={['sh', { 'sh--dark': dark }]}>
+  {label && <p class="t-label sh__label">{label}</p>}
+  <H class="t-h2 sh__heading" id={id}>{heading}</H>
+  {text && <p class="t-body-lg sh__text">{text}</p>}
+  {action && <div class="sh__action"><Button variant="text" href={action.href} label={action.label} icon="arrow-right" /></div>}
+  <slot />
+</div>
+<style>
+  .sh { display: flex; flex-direction: column; gap: 16px; max-width: 820px; }
+  .sh__label { color: var(--link); }
+  .sh__text { color: var(--text-2); }
+  .sh__action { margin-left: -8px; }
+  .sh--dark .sh__label, .sh--dark .sh__text { color: var(--on-inverse-2); }
+</style>

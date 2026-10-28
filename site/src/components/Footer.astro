@@ -1,0 +1,89 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import Brand from './Brand.astro';
+import { company, nav, businessLines, fullAddress } from '../config/company';
+const pages = [{ label: 'Home', href: '/' }, ...nav, { label: 'Contact us', href: '/contact/' }];
+const socials = Object.entries(company.social).filter(([, url]) => url) as [any, string][];
+const names: Record<string, string> = { youtube: 'YouTube', facebook: 'Facebook', instagram: 'Instagram', x: 'X', linkedin: 'LinkedIn', tiktok: 'TikTok' };
+const year = new Date().getFullYear();
+---
+<footer class="ftr bg-inverse on-dark">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__id">
+        <a href="/" aria-label={`${company.name}, home`}><Logo onDark height={56} /></a>
+        <p class="t-h4">{company.line}</p>
+      </div>
+      <Button variant="whatsapp" size="medium" />
+    </div>
+    <div class="ftr__cols">
+      <nav aria-label="Pages">
+        <h2 class="t-strong">Pages</h2>
+        <ul>{pages.map((p) => <li><a href={p.href}>{p.label}</a></li>)}</ul>
+      </nav>
+      <nav aria-label="What we do">
+        <h2 class="t-strong">What we do</h2>
+        <ul>{businessLines.map((l) => <li><a href={`/what-we-do/${l.slug}/`}>{l.name}</a></li>)}</ul>
+      </nav>
+      <div>
+        <h2 class="t-strong">Contact</h2>
+        <ul class="ftr__contact">
+          <li><Icon name="location" size={20} /><span>{company.address.street}, {company.address.area},<br />{company.address.city}, {company.address.state}</span></li>
+          <li><Icon name="phone" size={20} /><a href={company.phoneHref}>{company.phone}</a></li>
+          <li><Icon name="email" size={20} /><a href={`mailto:${company.email}`}>{company.email}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="t-strong">Follow us</h2>
+        <ul class="ftr__social">
+          {socials.map(([key, url]) => (
+            <li><a href={url} target="_blank" rel="noopener" class="ftr__social-link"><Brand name={key} size={20} /><span class="visually-hidden">{names[key]} (opens in a new tab)</span></a></li>
+          ))}
+        </ul>
+        <a class="ftr__sub" href={company.youtube.subscribeUrl} target="_blank" rel="noopener">
+          <Brand name="youtube" size={24} /><span class="t-strong">Subscribe on YouTube</span><Icon name="arrow-up-right" size={20} /><span class="visually-hidden"> (opens in a new tab)</span>
+        </a>
+        <p class="t-small ftr__handle">{company.youtube.handle}</p>
+      </div>
+    </div>
+    <div class="ftr__legal t-small">
+      <span>© {year} {company.name}</span>
+      <span>Registered in Nigeria, {company.rc}</span>
+      <a href="/privacy/">Privacy notice</a>
+    </div>
+  </div>
+</footer>
+<style>
+  .ftr { padding-top: 48px; padding-bottom: 32px; }
+  .ftr a:not(.btn) { color: var(--on-inverse-2); text-decoration: none; }
+  .ftr a:not(.btn):hover { color: var(--white); text-decoration: underline; }
+  .ftr__top { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+  .ftr__id { display: flex; flex-direction: column; gap: 16px; max-width: 520px; }
+  .ftr__id .t-h4 { color: var(--white); }
+  .ftr__id :global(.logo svg) { height: 48px; }
+  .ftr__cols { display: grid; gap: 40px; margin-top: 40px; }
+  .ftr__cols h2 { color: var(--white); margin-bottom: 8px; }
+  .ftr__cols ul { list-style: none; padding: 0; }
+  .ftr__cols ul a { display: inline-flex; align-items: center; min-height: 48px; }
+  .ftr__contact li { display: flex; gap: 12px; padding: 12px 0; color: var(--on-inverse-2); align-items: flex-start; }
+  .ftr__contact li :global(svg) { flex: none; margin-top: 2px; }
+  .ftr__contact a { min-height: 0 !important; }
+  .ftr__social { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ftr__social-link { width: 48px; height: 48px; border-radius: 999px; background: var(--bg-inverse-raised); justify-content: center; color: var(--white) !important; }
+  .ftr__social-link:hover { background: var(--ink-900); }
+  .ftr__sub { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; margin-top: 8px; color: var(--white) !important; }
+  .ftr__handle { color: var(--on-inverse-2); }
+  .ftr__legal { display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(231, 243, 236, 0.35); color: var(--on-inverse-2); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .ftr__legal a { color: var(--white); text-decoration: underline; }
+  @media (min-width: 768px) {
+    .ftr { padding-top: 80px; }
+    .ftr__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; margin-top: 56px; }
+    .ftr__id :global(.logo svg) { height: 56px; }
+  }
+  @media (min-width: 1200px) {
+    .ftr__top { flex-direction: row; justify-content: space-between; }
+    .ftr__cols { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+</style>

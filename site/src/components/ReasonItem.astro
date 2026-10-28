@@ -1,0 +1,12 @@
+---
+interface Props { title: string; text: string; level?: 'h3' | 'h4' }
+const { title, text, level = 'h3' } = Astro.props;
+const H = level;
+---
+<div class="reason">
+  <H class="t-h4">{title}</H>
+  <p class="c-2">{text}</p>
+</div>
+<style>
+  .reason { border-top: 2px solid var(--green-700); padding: 20px 0 8px; display: flex; flex-direction: column; gap: 8px; }
+</style>

@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import EstateCard from '../../components/EstateCard.astro';
+import Cta from '../../components/Cta.astro';
+import { getCollection } from 'astro:content';
+const estates = (await getCollection('estates')).sort((a, b) => a.data.order - b.data.order);
+const soon = estates.every((e) => e.data.status === 'Coming soon');
+---
+<Base title="Estate projects" current="/estates/" description="Primrose Hill Estates: our own estate developments in and around Benin City, Edo State, planned and built on secure legal footing.">
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'Estate projects' }]} heading="Estate projects" ratio="3:2" mobileRatio="16:9"
+    text="Primrose Hill Estates is our own range of estate developments in and around Benin City, planned and built on secure legal footing.">
+    <Fragment slot="actions"><Button href="#communities" label={soon ? 'Register your interest' : 'See the communities'} /><Button variant="whatsapp" /></Fragment>
+  </Hero>
+  <Section bg="page" id="communities">
+    <div class="reveal"><SectionHeader label="Our communities" heading="Primrose Hill Estates" text={soon ? 'All our communities are coming soon. Open a community to see its details and register your interest.' : 'Open a community to see its details, plots and prices.'} /></div>
+    <div class="grid t2 d3">{estates.map((e) => <div class="reveal flex"><EstateCard headingLevel="h3" href={`/estates/${e.id}/`} name={e.data.name} location={e.data.location} summary={e.data.summary} status={e.data.status} word={e.data.word} photo={e.data.photo} /></div>)}</div>
+  </Section>
+  <Cta label="Questions" heading="Not sure which estate is right for you?" text="Chat with us and we will help you compare locations, plot sizes and timelines." formLabel="Contact us" />
+</Base>
+<style>.flex { display: flex; } .flex > :global(*) { flex: 1; }</style>

@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+interface Props { items: { name: string; meta: string; file?: string }[] }
+const { items } = Astro.props;
+---
+<ul class="docs">
+  {items.map((d) => (
+    <li>
+      <span class="docs__name"><Icon name="download" /><span><span class="t-strong">{d.name}</span><span class="t-small c-2">{d.meta}</span></span></span>
+      {d.file ? <a href={d.file} class="docs__dl t-strong" download>Download<span class="visually-hidden"> {d.name}</span></a> : <span class="t-small c-2">Coming soon</span>}
+    </li>
+  ))}
+</ul>
+<style>
+  .docs { list-style: none; padding: 0; }
+  .docs li { display: flex; flex-direction: column; gap: 8px; padding: 16px 0; border-bottom: 1px solid var(--line); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .docs__name { display: flex; gap: 12px; align-items: center; }
+  .docs__name > span { display: flex; flex-direction: column; }
+  .docs__dl { display: inline-flex; align-items: center; min-height: 48px; }
+  @media (min-width: 768px) { .docs li { flex-direction: row; justify-content: space-between; align-items: center; } }
+</style>

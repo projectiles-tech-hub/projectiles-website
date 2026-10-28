@@ -1,0 +1,12 @@
+---
+import light from '../assets/logo/projectiles-horizontal-two-colour.svg?raw';
+import dark from '../assets/logo/projectiles-horizontal-white-pale-green.svg?raw';
+interface Props { onDark?: boolean; height?: number; class?: string }
+const { onDark = false, height = 48, class: cls } = Astro.props;
+const svg = (onDark ? dark : light).replace(/<title>[^<]*<\/title>/, '').replace(' role="img"', '').replace('<svg ', `<svg aria-hidden="true" focusable="false" height="${height}" `);
+---
+<span class:list={['logo', cls]} style={`--logo-h:${height}px`} set:html={svg} />
+<style>
+  .logo { display: inline-block; line-height: 0; }
+  .logo :global(svg) { height: var(--logo-h); width: auto; }
+</style>

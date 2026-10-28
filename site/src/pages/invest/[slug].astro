@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import OfferCard from '../../components/OfferCard.astro';
+import FactCard from '../../components/FactCard.astro';
+import Photo from '../../components/Photo.astro';
+import Checks from '../../components/Checks.astro';
+import Terms from '../../components/Terms.astro';
+import Reasons from '../../components/Reasons.astro';
+import Docs from '../../components/Docs.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
+import ContactList from '../../components/ContactList.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+export async function getStaticPaths() {
+  const all = (await getCollection('offers')).sort((a, b) => a.data.order - b.data.order);
+  return all.map((offer) => ({ params: { slug: offer.id }, props: { offer, all } }));
+}
+const { offer, all } = Astro.props as { offer: CollectionEntry<'offers'>; all: CollectionEntry<'offers'>[] };
+const o = offer.data;
+const s = o.sample ? ' (sample)' : '';
+const others = all.filter((x) => x.id !== offer.id);
+const RISK = 'Investments carry risk. Returns are not guaranteed and you could get back less than you invest. Read the risk notes and offer documents before you invest.';
+---
+<Base title={o.name} current="/invest/" description={`${o.name}: ${o.line} Minimum ${o.minimum}, term ${o.term}.`}>
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'Invest', href: '/invest/' }, { label: o.name }]} label="Investment offer" heading={o.name} text={o.line} ratio="4:3" mobileRatio="16:9">
+    <div slot="extra" class="figs">
+      <FactCard number={o.minimum} label={`minimum amount${s}`} />
+      <FactCard number={o.term} label={`term${s}`} />
+      <FactCard number={o.expectedReturn} label={`expected return, not guaranteed${s}`} />
+    </div>
+    <Fragment slot="actions"><Button href="#enquire" label="Enquire about this offer" /><Button variant="whatsapp" /></Fragment>
+  </Hero>
+  <Section bg="page">
+    <div class="two-col">
+      <div class="stack reveal" style="--gap:28px">
+        <SectionHeader label="What it is" heading="What your money does and what backs it" text={o.backing} />
+        {o.points.length > 0 && <Checks items={o.points} />}
+      </div>
+      <div class="reveal"><Photo ratio="4:3" /></div>
+    </div>
+  </Section>
+  <Section>
+    <div class="reveal"><SectionHeader label="Key terms" heading="The terms at a glance" text={o.sample ? 'All figures are samples until the offer is confirmed.' : undefined} /></div>
+    <Terms items={o.terms} />
+  </Section>
+  <Section bg="page">
+    <div class="reveal"><SectionHeader label="Risks" heading="Risks, in plain language" text={RISK} /></div>
+    <Reasons items={o.risks} cols={2} />
+  </Section>
+  <Section>
+    <div class="reveal"><SectionHeader label="How to invest" heading="From enquiry to investment" /></div>
+    <Reasons cols={4} numbered items={[
+      ['Enquire', 'Send the form below or chat on WhatsApp.'],
+      ['Talk it through', 'We explain the terms and risks and answer your questions.'],
+      ['Sign and pay', 'Sign the offer documents and pay into our company account.'],
+      ['Receive your returns', 'Returns are paid as set out in your documents.'],
+    ]} />
+  </Section>
+  {o.documents.length > 0 && (
+    <Section bg="page">
+      <div class="reveal"><SectionHeader label="Documents" heading="Documents for this offer" /></div>
+      <Docs items={o.documents} />
+    </Section>
+  )}
+  {o.video && (
+    <Section>
+      <div class="reveal"><SectionHeader label="Video" heading="This offer explained" /></div>
+      <VideoPlayer id={o.video.id} title={o.video.title} />
+    </Section>
+  )}
+  {o.faq.length > 0 && (
+    <Section>
+      <div class="reveal"><SectionHeader label="Questions" heading="Questions about this offer" /></div>
+      <Reasons items={o.faq} single />
+    </Section>
+  )}
+  <Section bg="page" id="enquire">
+    <div class="two-col top">
+      <div class="stack reveal" style="--gap:28px">
+        <SectionHeader label="Enquire" heading="Enquire about this offer" text={`${o.name} is already selected. We will call you back to talk it through.`} />
+        <div><Button variant="whatsapp" /></div>
+        <ContactList />
+      </div>
+      <div class="reveal"><EnquiryForm id="enquiry" form={`Investor enquiry: ${o.name}`} button="Send my enquiry" fields={[
+        { type: 'text', name: 'name', label: 'Full name', required: true, placeholder: 'Your full name' },
+        { type: 'phone', name: 'phone', label: 'Phone or WhatsApp number', help: 'We call or WhatsApp you on this number.', required: true },
+        { type: 'email', name: 'email', label: 'Email', placeholder: 'you@example.com' },
+        { type: 'select', name: 'offer', label: 'Offer of interest', required: true, options: [...all.map((x) => x.data.name), 'Not sure yet'], selected: o.name, help: `${o.name} is already selected.` },
+        { type: 'select', name: 'amount', label: 'Amount you are thinking of investing', options: ['Under ₦1 million', '₦1 million to ₦5 million', '₦5 million to ₦20 million', 'Over ₦20 million'] },
+        { type: 'textarea', name: 'message', label: 'Message' },
+      ]} /></div>
+    </div>
+  </Section>
+  {others.length > 0 && (
+    <Section>
+      <div class="reveal"><SectionHeader label="Invest" heading="Other investment offers" /></div>
+      <div class="grid t2 d3">{others.map((x) => <div class="reveal flex"><OfferCard href={`/invest/${x.id}/`} name={x.data.name} line={x.data.line} minimum={x.data.minimum} term={x.data.term} expectedReturn={x.data.expectedReturn} sample={x.data.sample} /></div>)}</div>
+      <div><Button variant="secondary" href="/invest/" label="All investment offers" /></div>
+    </Section>
+  )}
+</Base>
+<style>
+  .flex { display: flex; } .flex > :global(*) { flex: 1; }
+  .figs { display: grid; gap: 16px; width: 100%; }
+  @media (min-width: 768px) { .figs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

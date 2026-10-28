@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+import CardLink from './CardLink.astro';
+import type { BusinessLine } from '../config/company';
+interface Props { line: BusinessLine; media?: 'photo' | 'icon'; headingLevel?: 'h2' | 'h3' }
+const { line, media = 'icon', headingLevel = 'h3' } = Astro.props;
+const H = headingLevel;
+---
+<article class:list={['card', 'blc', `blc--${media}`]}>
+  {media === 'photo' && <Photo ratio="4:3" sizes="(min-width: 1200px) 400px, (min-width: 768px) 50vw, 100vw" />}
+  <div class="card__body">
+    {media === 'icon' && <Icon name={line.icon} size={40} />}
+    <H class="t-h4 card__title"><a href={`/what-we-do/${line.slug}/`} class="card__stretch">{line.name}</a></H>
+    <p class="c-2">{line.line}</p>
+    <CardLink label="Learn more" />
+  </div>
+</article>
