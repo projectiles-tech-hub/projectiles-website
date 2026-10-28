@@ -82,8 +82,7 @@ FindHouseQuick is the company's rental platform; using its palette ties the comp
 The FindHouseQuick colours are in its approved design system: Penpot file "Release 1 Screens", page "00 Design
 system", board "Colours"
 ([open in Penpot](https://design.penpot.app/#/workspace?team-id=685eebd9-2ce2-80a4-8008-d5ccd136bc96&file-id=41725af0-a889-809a-8008-d5d0a0c28100&page-id=9f79414e-8c92-80e5-8008-d5d27bcc2301&board-id=9f79414e-8c92-80e5-8008-d5d29b502680)).
-**Read the exact values from that board before starting**; the values below are as first created on 23 October 2026
-and must be checked against it.
+The values below were read from that file's colour library on 28 October 2026 and are the approved values.
 
 | Group | Name | Value | Use in FindHouseQuick |
 | --- | --- | --- | --- |
@@ -102,6 +101,7 @@ and must be checked against it.
 | Status | Success / Success tint | `#15803D` / `#E3F4E8` | Success messages |
 | Status | Warning / Warning tint | `#B45309` / `#FEF3E2` | Warnings |
 | Status | Error / Error tint | `#B91C1C` / `#FDE8E8` | Errors |
+| Status | Error pressed | `#8F1717` | Pressed state of error (delete) buttons |
 | Status | Verified blue / Info tint | `#1D4ED8` / `#E6EDFD` | Information |
 
 **Blending:** keep these colours as the base. Add only the colours a premium company website needs that the app
