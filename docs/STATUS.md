@@ -13,7 +13,9 @@ Updated: 28 October 2026.
 - Design system approved on 28 October 2026: Direction 1 (light and calm), the logo (all three colour options, each
   used where it fits; SVG files in `brand/logo/`), spacing, grid and shape, and motion (Material Design 3 timings).
 - Fonts: Source Sans 3 only (the FindHouseQuick font).
-- Page designs: Home approved 28 October 2026; the other pages are being designed.
+- Page designs: Home approved 28 October 2026; all other pages, form results and the phone prototype are in
+  Figma waiting for Emmanuel (links in `designs.md`). Two components were added for them: Plot map (estate plan)
+  and Reason item.
 - Nothing built yet.
 
 ## Settled
@@ -31,7 +33,9 @@ Updated: 28 October 2026.
 
 ## Questions for Emmanuel
 
-None open.
+1. **Pages 02 to 14 and the prototype**: approve, or say what to change (links in `designs.md`).
+2. **Managing Director profile**: a short profile and a photo for the About us page.
+3. **Investment offers**: the real names, minimum amounts, terms, returns, risks and documents, to replace the samples.
 
 ## Next
 
