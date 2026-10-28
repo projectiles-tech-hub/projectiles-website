@@ -89,7 +89,8 @@ is tracked in `docs/designs.md`.
 - **Astro**, a tool that turns page templates into plain website files. Nothing runs on the server except the form.
 - **Contact and interest forms**: one small PHP file that emails each enquiry to the company. Nothing is stored.
 - **Estate maps**: drawn from each community's plot layout file; no paid map service needed.
-- **Hosting**: Namecheap shared hosting; domain projectilestechhublimited (see `DEPLOYMENT.md`).
+- **Hosting**: Namecheap shared hosting; main address projectilestechhublimited.com, with
+  projectilestechhublimited.com.ng pointing to it (see `DEPLOYMENT.md`).
 - **Cloudflare** (free) in front of the host for speed and protection.
 - **Publishing**: when a pull request is merged, GitHub builds the site and uploads it to the host automatically;
   it also rebuilds daily to pick up new YouTube videos.

@@ -13,12 +13,12 @@ Updated: 28 October 2026.
 
 - YouTube channel: @primrosehillestates.
 - Hosting: Namecheap shared hosting.
-- Domain: projectilestechhublimited.
+- Domain: projectilestechhublimited.com, with projectilestechhublimited.com.ng pointing to it.
 - Investment offer details come later; the Invest page uses sample figures until then.
 
 ## Questions for Emmanuel
 
-1. **Domain extension**: .com, .com.ng or another?
+None at the moment.
 
 ## Next
 

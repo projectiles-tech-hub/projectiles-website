@@ -349,7 +349,7 @@ recorded there as "Approved" or "Changes asked".
 | Managing Director | Emmanuel Chukwuka Oraegbu (always written this way, without letters after the name) |
 | Business lines | Real estate development; construction; project management; cement distribution; block moulding; sand dredging; logistics and haulage |
 | YouTube channel | @primrosehillestates (https://www.youtube.com/@primrosehillestates) |
-| Website address | projectilestechhublimited (extension to be confirmed; show it as projectilestechhublimited.com until then) |
+| Website address | projectilestechhublimited.com |
 | Estate communities | Primrose Hill Estates, Obazuwa; Primrose Hill Estates, Uzala; Primrose Hill Estates, Ekole (all coming soon) |
 
 ## 12. Still to come, and what to do meanwhile

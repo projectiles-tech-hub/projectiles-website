@@ -6,7 +6,8 @@ Everything needed to put the website online. Record any manual change at the bot
 
 - **Hosting:** Namecheap shared hosting (Stellar plans). Namecheap looks after the server; cPanel, email mailboxes
   and PHP (for the contact form) are included. Data centres: US (Phoenix) or Europe (Amsterdam).
-- **Domain:** projectilestechhublimited (the extension, such as .com or .com.ng, is still to be confirmed).
+- **Domain:** projectilestechhublimited.com is the main address. projectilestechhublimited.com.ng points to the same
+  site: it redirects every page to the same page on .com.
 
 ## Setting up Namecheap shared hosting
 
@@ -18,7 +19,9 @@ Everything needed to put the website online. Record any manual change at the bot
 
 ## Cloudflare and publishing
 
-1. Add the domain to Cloudflare (free) and change the nameservers at Namecheap to Cloudflare's.
+1. Add both domains to Cloudflare (free) and change their nameservers at Namecheap to Cloudflare's.
+   For projectilestechhublimited.com.ng, add a Cloudflare redirect rule that sends every address to the same path on
+   https://projectilestechhublimited.com (permanent redirect, 301).
 2. In GitHub, **Settings, Secrets and variables, Actions**, add:
 
    | Secret | Value |
