@@ -13,6 +13,7 @@ Updated: 28 October 2026.
 - Design system approved on 28 October 2026: Direction 1 (light and calm), the logo (all three colour options, each
   used where it fits; SVG files in `brand/logo/`), spacing, grid and shape, and motion (Material Design 3 timings).
 - Fonts: Source Sans 3 only (the FindHouseQuick font).
+- Page designs: Home approved 28 October 2026; the other pages are being designed.
 - Nothing built yet.
 
 ## Settled
@@ -24,6 +25,9 @@ Updated: 28 October 2026.
 - Each investment offer has its own page, opened from the Invest page.
 - Videos have their own page (all the channel's videos) and can also be placed on any page.
 - A Gallery page shows photos and videos together.
+- IT is not a business line; it is mentioned only in the company profile on About us (28 October 2026).
+- Property management, property valuation, land administration and title perfection, geo-services, and agency and
+  property brokerage are services offered to clients, shown on the Real estate development page (28 October 2026).
 
 ## Questions for Emmanuel
 

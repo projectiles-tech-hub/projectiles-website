@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Show clearly what Projectiles Tech Hub Limited does, advertise its estate projects, share its videos, and make it
+Show clearly what Projectiles Tech Hub Limited does (a project management, construction, IT and real estate
+company, with its own supply chain), advertise its estate projects, share its videos, and make it
 easy to get in touch. The company comes first; the estates are its projects.
 
 ## Pages
@@ -25,13 +26,20 @@ easy to get in touch. The company comes first; the estates are its projects.
 
 ## Business lines
 
-1. Real estate development
+Core services first, then the company's own estates, then the supply businesses (see the company description in
+`DESIGN_BRIEF.md`, section 2):
+
+1. Project management
 2. Construction
-3. Project management
+3. Real estate development
 4. Cement distribution
 5. Block moulding
 6. Sand dredging
 7. Logistics and haulage
+
+IT is not a business line; it appears only in the company profile on About us. The Real estate development page also
+lists the property services offered to clients: property management, property valuation, land administration and
+title perfection, geo-services, and agency and property brokerage.
 
 ## Estate projects
 
