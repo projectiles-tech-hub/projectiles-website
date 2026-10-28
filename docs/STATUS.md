@@ -7,9 +7,10 @@ Updated: 28 October 2026.
 - Repository, plan, design brief, logo and skills in place.
 - Claude makes the designs in Figma; the website uses Emmanuel's 11 colours (given 28 October 2026); investment
   offers on a dedicated Invest page.
-- Design components are in Figma and waiting for Emmanuel's approval (see `designs.md` for the links): icons,
-  buttons, links, badges, section header, breadcrumbs, cards, photo slots, form fields, notices, video player,
-  gallery, map, header and footer, plus the colours and type they use.
+- Icons, components, colours and type approved by Emmanuel on 28 October 2026 (links in `designs.md`). This
+  includes the darker green for pressed buttons, the official social media colours for their marks, and the field
+  outline grey #B8BEC7 as chosen.
+- Next: logo options, spacing and grid, motion, and the directions board.
 - Fonts: Source Sans 3 only (the FindHouseQuick font).
 - Nothing built yet.
 
@@ -25,18 +26,13 @@ Updated: 28 October 2026.
 
 ## Questions for Emmanuel
 
-1. **Components**: approve, or say what to change (Figma links in `designs.md`).
-2. **Colours**: the board now uses only your 11 colours. Two small additions to confirm: a darker green
-   (#08502B) for buttons when pressed or pointed at, and the official WhatsApp, YouTube, Facebook and LinkedIn
-   colours for their marks. Note: the field outline grey (#B8BEC7) is lighter than the accessibility guide for
-   outlines (3:1); fields still show on white, but a slightly darker grey would be easier to see.
+None open.
 
 ## Next
 
 1. [ ] Design system in Figma, approved (brief: `DESIGN_BRIEF.md`; progress: `designs.md`).
-   - [x] Icons and components drawn, colours changed to Emmanuel's palette and icons redrawn (28 October 2026),
-     waiting for approval.
-   - [ ] Logo options, spacing and grid, and motion boards.
+   - [x] Icons, components, colours and type approved (28 October 2026).
+   - [ ] Logo options, spacing and grid, motion and directions boards.
 2. [ ] Page designs in Figma, approved.
 3. [ ] Build the pages.
 4. [ ] Hosting, domain, forms, YouTube feed and automatic publishing.
