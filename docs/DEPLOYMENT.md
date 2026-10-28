@@ -17,6 +17,22 @@ Everything needed to put the website online. Record any manual change at the bot
 3. In cPanel **Email Accounts**, create the mailbox that sends form enquiries.
 4. Put the form settings in `~/config/enquiry.php` (outside the public folder), permissions `600`.
 
+## Uploading the files by hand (cPanel File Manager)
+
+Emmanuel's chosen way to publish (28 October 2026): copy the finished files to the server himself.
+
+1. Get the finished files as one zip file. Claude can make it, or run `pnpm build` in `site/` and zip the contents
+   of `site/dist` (not the folder itself).
+2. In cPanel, open **File Manager**, then **Settings**, and tick **Show Hidden Files**, so `.htaccess` is visible.
+3. Open `public_html`. Delete the old website files there, but keep `.well-known` and `cgi-bin`.
+4. **Upload** the zip into `public_html`, then right-click it, **Extract**, and delete the zip afterwards.
+5. Check that `public_html` now holds `index.html`, `.htaccess`, `enquiry.php` and the page folders directly, not
+   inside another folder.
+6. Open https://projectilestechhublimited.com and send a test enquiry from the Contact us page.
+
+The Videos page lists videos only when the files are built with internet access to YouTube; otherwise it shows a
+link to the channel. New YouTube videos appear on the site only after the next upload.
+
 ## Contact form settings
 
 The forms post to `enquiry.php`, which emails each enquiry. Its settings file lives outside the public folder at
