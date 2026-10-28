@@ -49,7 +49,8 @@ Communities now, all **Coming soon** until their details are final:
 
 ## Videos and YouTube
 
-- Videos are uploaded to the company's YouTube channel, not to the website host. YouTube carries the cost of
+- Videos are uploaded to the company's YouTube channel, @primrosehillestates
+  (https://www.youtube.com/@primrosehillestates), not to the website host. YouTube carries the cost of
   streaming and plays well on slow connections.
 - The website shows the latest videos from the channel automatically. GitHub rebuilds the site once a day and
   reads the channel's public video list (no YouTube password or key needed), so a new upload appears on the site
@@ -88,6 +89,8 @@ is tracked in `docs/designs.md`.
 - **Astro**, a tool that turns page templates into plain website files. Nothing runs on the server except the form.
 - **Contact and interest forms**: one small PHP file that emails each enquiry to the company. Nothing is stored.
 - **Estate maps**: drawn from each community's plot layout file; no paid map service needed.
+- **Hosting**: Namecheap shared hosting; main address projectilestechhublimited.com, with
+  projectilestechhublimited.com.ng pointing to it (see `DEPLOYMENT.md`).
 - **Cloudflare** (free) in front of the host for speed and protection.
 - **Publishing**: when a pull request is merged, GitHub builds the site and uploads it to the host automatically;
   it also rebuilds daily to pick up new YouTube videos.
