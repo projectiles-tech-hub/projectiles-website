@@ -1,13 +1,12 @@
 # Status
 
-Updated: 27 October 2026.
+Updated: 28 October 2026.
 
 ## Where things stand
 
-- Repository and instructions set up.
-- Emmanuel's answers of 27 October 2026 recorded in `PLAN.md` (pull request #1, awaiting approval): business
-  lines; a completely new, premium look; FindHouseQuick design principles; estate projects as communities that can
-  be added (Obazuwa, Uzala and Ekole, all coming soon); videos from YouTube; contacts; the logo (`brand/`); the skills used in the build; the design brief for the designer.
+- Pull request #1 merged: repository, plan, design brief, logo and skills.
+- Pull request #2 (awaiting approval): Claude makes the designs in Figma; the website uses the FindHouseQuick colours,
+  blended with any other colours needed; investment offers on a dedicated Invest page.
 - Nothing designed or built yet.
 
 ## Questions for Emmanuel
@@ -15,7 +14,7 @@ Updated: 27 October 2026.
 1. **YouTube channel**: which channel do the website videos come from (its link or handle)?
 2. **Hosting**: Namecheap shared hosting or a Spaceship Starlight virtual machine (see `DEPLOYMENT.md`).
 3. **Domain**: projectilespa.com, or another address?
-4. **Investment page**: leave it out for now?
+4. **Investment offers**: the details of each offer (amounts, terms, returns, documents) for the Invest page.
 
 ## Next
 

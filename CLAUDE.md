@@ -15,8 +15,8 @@ Update `STATUS.md` at the end of each session. Any setting, password location or
 
 ## How the work goes
 
-- Follow the design principles in `docs/PLAN.md` (the same as FindHouseQuick): designs made in Figma (by the
-  designer, following `docs/DESIGN_BRIEF.md`) and approved before any page is built. Build only from approved designs.
+- Follow the design principles in `docs/PLAN.md` (the same as FindHouseQuick): designs made in Figma by Claude
+  (following `docs/DESIGN_BRIEF.md`) and approved before any page is built. Build only from approved designs.
 - Each piece of work is a branch and a pull request to `main`; it is done when Emmanuel merges it.
 - Do not add pages, features or content he has not asked for. Suggest them instead.
 - Plain language; short side notes for technical terms. No em dashes in anything written for him.
@@ -38,7 +38,7 @@ not switched on when its stage starts, ask Emmanuel to switch it on.
 - Videos are hosted on YouTube and load only when the visitor taps play.
 - Pages must be light and fast on mobile data, and work well on phones first.
 - No secrets in the repository.
-- No investment offers on the site unless Emmanuel approves the wording.
+- Investment offers appear only on the Invest page; other pages may link to it.
 
 ## Commands (once `site/` exists)
 

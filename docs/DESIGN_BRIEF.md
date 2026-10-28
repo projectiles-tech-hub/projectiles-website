@@ -1,11 +1,11 @@
 # Design brief: Projectiles Tech Hub Limited website
 
-For whoever designs the website in Figma. Read it all before starting. Everything you need is here or linked from
+For Claude, who designs the website in Figma (through the Figma connector). Read it all before starting. Everything you need is here or linked from
 here; anything still missing is listed in Section 12, with what to do in the meantime.
 
 ## 1. The job
 
-Design a **design system** and then **every page** of the public website of Projectiles Tech Hub Limited, in Figma,
+Claude designs a **design system** and then **every page** of the public website of Projectiles Tech Hub Limited, in Figma,
 at three widths. Emmanuel Chukwuka Oraegbu (Managing Director) reviews and approves the work. The website is then
 built from the approved designs, so the designs must be complete and exact enough to build from without guessing.
 
@@ -43,34 +43,71 @@ What "premium" means here:
 - Large, confident photography and video; real places and people, not illustration.
 - Generous white space and a calm, uncluttered layout.
 - Refined typography with a clear hierarchy; a strong display face for headlines is welcome.
-- Restrained colour: built around the logo, used with discipline, not everywhere.
+- The FindHouseQuick colours (Section 4a), used with discipline, not everywhere.
 - Subtle, purposeful motion (gentle reveals, hover states), never decoration for its own sake.
 - Confidence and trust: credentials visible, contact always one tap away.
 
 Avoid:
 - Anything that looks like a stock template or a page builder theme.
-- Gold used as a background flood or on large areas; it is an accent.
+- Accent colours (such as amber) used as a background flood or on large areas; they are accents.
 - Busy backgrounds, heavy gradients, glassy effects that hurt readability or speed.
 - Clip art, generic stock icons, or emoji as icons.
 - Text over photos without enough contrast.
 - Carousels that hide the main message.
 
-Show **two or three distinct directions** for colour and type, side by side on one board, before choosing one with
-Emmanuel (Section 5).
+Show **two or three distinct directions**, side by side on one board, before choosing one with Emmanuel. All
+directions use the FindHouseQuick colours (Section 4a); they differ in how the colours are blended and balanced, and
+in type (Section 5).
 
 ## 4. The logo
 
 - **File:** `brand/logo-original.png` in the repository (light and dark versions on one image).
 - **Shape:** a "P" mark with a rising gold arrow and bar chart, the word PROJECTILES, and TECH HUB LIMITED beneath
   between two rules. **Keep the shape.**
-- **Colours now:** navy about `#021B3D`, gold about `#CC992A`. **The colours may be changed** to suit the new look;
-  propose options as part of Section 5, shown on light and dark backgrounds.
+- **Colours now:** navy about `#021B3D`, gold about `#CC992A`. **The logo colours are changed to suit the website's
+  colours** (Section 4a); propose two or three recoloured versions for Emmanuel to choose from, shown on light and dark
+  backgrounds.
 - **Deliver the logo as clean vectors** (redrawn, not traced roughly), in Figma and exported as SVG:
   1. Full logo, horizontal (mark beside the words) for the website header.
   2. Full logo, stacked (as in the file).
   3. Mark only (for the browser tab icon, the phone home-screen icon and social profile pictures).
   4. Each in a version for light backgrounds and one for dark backgrounds, plus one-colour versions.
 - Show the smallest size each version stays readable at, and the clear space to keep around it.
+
+## 4a. Colours
+
+**The website uses the FindHouseQuick app's colours, properly blended with any other colours the website needs.**
+FindHouseQuick is the company's rental platform; using its palette ties the company and its products together.
+
+The FindHouseQuick colours are in its approved design system: Penpot file "Release 1 Screens", page "00 Design
+system", board "Colours"
+([open in Penpot](https://design.penpot.app/#/workspace?team-id=685eebd9-2ce2-80a4-8008-d5ccd136bc96&file-id=41725af0-a889-809a-8008-d5d0a0c28100&page-id=9f79414e-8c92-80e5-8008-d5d27bcc2301&board-id=9f79414e-8c92-80e5-8008-d5d29b502680)).
+**Read the exact values from that board before starting**; the values below are as first created on 23 October 2026
+and must be checked against it.
+
+| Group | Name | Value | Use in FindHouseQuick |
+| --- | --- | --- | --- |
+| Brand | Green 700 (primary) | `#0B6B3A` | Main action colour |
+| Brand | Green 800 (pressed) | `#08502B` | Pressed state |
+| Brand | Green 50 (tint) | `#E7F3EC` | Light green backgrounds |
+| Accent | Amber 500 | `#F2A900` | Highlights (prices on the map) |
+| Accent | Amber 100 | `#FDF0CC` | Light amber backgrounds |
+| Neutral | Ink 900 (text) | `#111827` | Main text |
+| Neutral | Ink 600 (secondary text) | `#4B5563` | Secondary text |
+| Neutral | Ink 400 (disabled) | `#9CA3AF` | Disabled items only |
+| Neutral | Border | `#B8BEC7` | Borders |
+| Neutral | Divider | `#E5E7EB` | Dividers |
+| Neutral | Background | `#F6F6F3` | Page background |
+| Neutral | Surface | `#FFFFFF` | Cards and panels |
+| Status | Success / Success tint | `#15803D` / `#E3F4E8` | Success messages |
+| Status | Warning / Warning tint | `#B45309` / `#FEF3E2` | Warnings |
+| Status | Error / Error tint | `#B91C1C` / `#FDE8E8` | Errors |
+| Status | Verified blue / Info tint | `#1D4ED8` / `#E6EDFD` | Information |
+
+**Blending:** keep these colours as the base. Add only the colours a premium company website needs that the app
+palette lacks, for example a deep dark shade for dark hero and footer sections, extra tints or shades of the green,
+and image overlays, each derived from or harmonising with the FindHouseQuick palette. Show every added colour beside
+the FindHouseQuick colours on the Colours board, with the reason for it, for Emmanuel's approval.
 
 ## 5. Design principles (the same ones used for FindHouseQuick)
 
@@ -112,7 +149,7 @@ The site is built with Astro into plain, fast files. For the design, that means:
 Put it on the page "00 Design system", one board per part.
 
 ### 7.1 Colour
-- Brand colours (from the adjusted logo), neutrals (backgrounds, surfaces, borders, text), and states (success,
+- The FindHouseQuick colours (Section 4a) and any added colours, neutrals (backgrounds, surfaces, borders, text), and states (success,
   warning, error, information).
 - Light theme is required. A dark theme is optional; propose it only if it adds to the premium feel.
 - A contrast table for every text and background pair actually used.
@@ -236,24 +273,39 @@ Introduction and "Subscribe on YouTube"; a featured video; a grid of video cards
 Contacts (WhatsApp, phone, email, address) with one-tap actions; the enquiry form (name, phone, email, business line
 of interest, message, consent); map with "Get directions"; opening hours if Emmanuel provides them.
 
-### 8.9 Privacy notice
+### 8.9 Invest
+A page dedicated to the company's investment offers. Other pages (home, about, estates) may link to it, but offers
+are presented only here.
+
+1. Hero: invest with Projectiles Tech Hub Limited; one supporting line; action "Talk to us about investing".
+2. Why invest with us: the company's track record and how the business lines support each other.
+3. **The offers:** one card or section per offer, each with its name, what it is, what backs it, the minimum amount,
+   the term and the expected return, and an "Enquire" action. Design it so offers can be added or removed. Offers
+   from company records, to confirm with Emmanuel: trade finance notes; asset-backed notes; land-secured growth units
+   tied to Primrose Hill Estates plots. Use realistic sample figures, marked as samples, until he supplies them.
+4. How it works: simple steps from enquiry to investment.
+5. Frequently asked questions.
+6. Documents and disclosures: a block for terms, risk notes and downloadable documents.
+7. Investor enquiry form: name, phone, email, offer of interest, amount range, message, consent.
+
+### 8.10 Privacy notice
 A plain, readable long-text page (headings, paragraphs, lists). The text will be supplied.
 
-### 8.10 Page not found
+### 8.11 Page not found
 A friendly message, a search or the main links, and a way back home.
 
-### 8.11 Form results
+### 8.12 Form results
 The thank-you state and the error state of each form (shown in place on the page).
 
 ## 9. Order of work and delivery
 
-1. **Directions:** two or three colour and type directions on one board, using the logo, a button, a card and a
+1. **Directions:** two or three directions (colour blending and type, all on the FindHouseQuick colours) on one board, using the logo, a button, a card and a
    short hero, at desktop and phone. Emmanuel chooses one.
 2. **Design system:** everything in Section 7, built as variables, styles and components. Approved.
 3. **Pages**, in this order, each at 1366, 768 and 360: Home; What we do; Business line page; Estate projects;
-   Estate page (both states); Videos; Contact us; About us; Privacy notice; Page not found.
+   Estate page (both states); Invest; Videos; Contact us; About us; Privacy notice; Page not found.
 4. **Prototype:** link the pages so the main journeys can be clicked through on a phone: home to a business line
-   to WhatsApp; home to an estate to the interest form; home to a video.
+   to WhatsApp; home to an estate to the interest form; home to a video; home to the Invest page to the investor enquiry form.
 
 **Figma file layout:**
 
@@ -283,7 +335,7 @@ recorded there as "Approved" or "Changes asked".
 - **Tone:** confident, clear, warm, and professional. Short sentences. No jargon.
 - **Spelling:** British English (as used in Nigeria): colour, programme, moulding.
 - **Money:** written with the Naira sign, for example ₦25,000,000.
-- **No investment offers** anywhere on the site unless Emmanuel approves the wording.
+- **Investment offers** appear only on the Invest page (Section 8.9); other pages may link to it.
 
 ## 11. Fixed details to use
 
@@ -308,6 +360,7 @@ recorded there as "Approved" or "Changes asked".
 | Web address (domain) | Use "projectiles.example" wherever an address appears |
 | Privacy notice text | Use sample headings and paragraphs |
 | Opening hours | Leave a slot; mark it optional |
+| Investment offer details (amounts, terms, returns, documents) | Realistic sample figures marked as samples |
 
 Questions about the brief go to Emmanuel. Do not add pages, sections or features beyond this brief without his
 agreement; suggest them instead.

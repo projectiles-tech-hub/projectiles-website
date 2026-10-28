@@ -15,6 +15,7 @@ easy to get in touch. The company comes first; the estates are its projects.
 | Business line page (one per line) | What we offer, who it is for, photos or videos, and an enquiry button |
 | Estate projects | Every estate community, each as a card with its status (for example, "Coming soon") |
 | Estate page (one per community) | Everything about that community: location, size, plots, amenities, title, photos, videos, map, and how to register interest or subscribe |
+| Invest | The company's investment offers, each with its details, and an investor enquiry form. Offers appear only on this page; other pages may link to it |
 | Videos | All our videos, with a link to subscribe to our YouTube channel |
 | Contact us | Address, phone, WhatsApp, email, map and an enquiry form |
 | Privacy notice | How enquiry details are used (needed under the Nigeria Data Protection Act because the forms collect personal data) |
@@ -68,18 +69,17 @@ Enquiry forms send to projectilestechhub@gmail.com.
 ## Look
 
 A completely new look, not the June 2026 one: trendy and premium. Large, confident photography and video, generous
-white space, refined type, and restrained colour built around the company logo. Easy to scan: a visitor should see
+white space, refined type, and the FindHouseQuick app's colours properly blended with any other colours the website needs. Easy to scan: a visitor should see
 what we do within the first screen of the home page.
 
 ## Logo
 
 The logo is in `brand/logo-original.png` (light and dark versions). Its current colours are navy (about `#021B3D`)
-and gold (about `#CC992A`). The colours may be adjusted in the design system step to suit the
-new look; the shape stays. The final logo is redrawn as a clean SVG (vector) file so it stays sharp at every size.
+and gold (about `#CC992A`). The logo colours are changed to suit the website's colours; the shape stays. The final logo is redrawn as a clean SVG (vector) file so it stays sharp at every size.
 
 ## Design
 
-The design system and every page are designed in Figma by the designer, following `docs/DESIGN_BRIEF.md` (the full
+The design system and every page are designed in Figma by Claude, following `docs/DESIGN_BRIEF.md` (the full
 brief, including the FindHouseQuick design principles). Emmanuel approves each design before it is built; progress
 is tracked in `docs/designs.md`.
 
