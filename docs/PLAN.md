@@ -89,7 +89,7 @@ Enquiry forms send to projectilestechhub@gmail.com.
 ## Look
 
 A completely new look, not the June 2026 one: trendy and premium. Large, confident photography and video, generous
-white space, refined type, and the FindHouseQuick app's colours properly blended with any other colours the website needs. Easy to scan: a visitor should see
+white space, refined type in the FindHouseQuick font (Source Sans 3), and the FindHouseQuick app's colours properly blended with any other colours the website needs. Easy to scan: a visitor should see
 what we do within the first screen of the home page.
 
 ## Logo
