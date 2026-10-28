@@ -15,6 +15,9 @@ Updated: 28 October 2026.
 - Hosting: Namecheap shared hosting.
 - Domain: projectilestechhublimited.com, with projectilestechhublimited.com.ng pointing to it.
 - Investment offer details come later; the Invest page uses sample figures until then.
+- Each investment offer has its own page, opened from the Invest page.
+- Videos have their own page (all the channel's videos) and can also be placed on any page.
+- A Gallery page shows photos and videos together.
 
 ## Questions for Emmanuel
 

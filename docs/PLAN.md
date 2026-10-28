@@ -15,8 +15,10 @@ easy to get in touch. The company comes first; the estates are its projects.
 | Business line page (one per line) | What we offer, who it is for, photos or videos, and an enquiry button |
 | Estate projects | Every estate community, each as a card with its status (for example, "Coming soon") |
 | Estate page (one per community) | Everything about that community: location, size, plots, amenities, title, photos, videos, map, and how to register interest or subscribe |
-| Invest | The company's investment offers, each with its details, and an investor enquiry form. Offers appear only on this page; other pages may link to it |
-| Videos | All our videos, with a link to subscribe to our YouTube channel |
+| Invest | Why invest with us and a list of every investment offer, each as a card that opens the offer's own page |
+| Investment offer page (one per offer) | Everything about that offer: what it is, what backs it, minimum amount, term, expected return, how returns are paid, risks, documents, how to invest, questions and answers, and an investor enquiry form with the offer already selected |
+| Videos | All our videos from the YouTube channel, newest first, with a link to subscribe |
+| Gallery | Our photos and videos together, each opening full-screen when tapped |
 | Contact us | Address, phone, WhatsApp, email, map and an enquiry form |
 | Privacy notice | How enquiry details are used (needed under the Nigeria Data Protection Act because the forms collect personal data) |
 | Page not found | Friendly page with links back to the main pages |
@@ -47,6 +49,15 @@ Communities now, all **Coming soon** until their details are final:
 | Primrose Hill Estates, Uzala | `/estates/primrose-hill-uzala` |
 | Primrose Hill Estates, Ekole | `/estates/primrose-hill-ekole` |
 
+## Investment offers
+
+Each investment offer is one file in `site/src/content/offers/`. Adding an offer means adding one file; it then
+appears on the Invest page and gets its own page at `/invest/<offer-name>`. Removing the file removes the offer.
+Offers appear only on the Invest page and their own pages; other pages may link to them.
+
+Offers from company records, to confirm with Emmanuel: trade finance notes; asset-backed notes; land-secured
+growth units tied to Primrose Hill Estates plots. Sample figures, marked as samples, until he supplies the details.
+
 ## Videos and YouTube
 
 - Videos are uploaded to the company's YouTube channel, @primrosehillestates
@@ -56,7 +67,15 @@ Communities now, all **Coming soon** until their details are final:
   reads the channel's public video list (no YouTube password or key needed), so a new upload appears on the site
   within a day without anyone touching the website.
 - Videos load only when a visitor taps play, so pages stay light on mobile data.
-- A video can also be placed on a particular estate or business line page by adding its link to that page's file.
+- The Videos page lists all the channel's videos. A video can also be placed on any page where it is needed (for
+  example an estate, business line, investment offer or About us page) by adding its link to that page.
+
+## Gallery
+
+- The Gallery page shows our photos and videos together. Tapping a photo opens it full-screen; tapping a video
+  plays it from YouTube.
+- Photos are kept with the website and resized automatically so they load quickly; videos stay on YouTube.
+- Adding a photo or video link to the gallery folder adds it to the page.
 - Every page footer has a "Subscribe on YouTube" link.
 
 ## Contacts shown on the site

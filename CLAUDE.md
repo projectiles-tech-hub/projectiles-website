@@ -35,10 +35,12 @@ not switched on when its stage starts, ask Emmanuel to switch it on.
   on Namecheap shared hosting.
 - Contact details and business lines live in one place (`site/src/config/company.ts`), not repeated across pages.
 - Each estate community is one file in `site/src/content/estates/`; adding a file adds the community everywhere.
-- Videos are hosted on YouTube and load only when the visitor taps play.
+- Each investment offer is one file in `site/src/content/offers/`; adding a file adds the offer to the Invest
+  page and gives it its own page.
+- Videos are hosted on YouTube and load only when the visitor taps play. A video can be placed on any page.
 - Pages must be light and fast on mobile data, and work well on phones first.
 - No secrets in the repository.
-- Investment offers appear only on the Invest page; other pages may link to it.
+- Investment offers appear only on the Invest page and each offer's own page; other pages may link to them.
 
 ## Commands (once `site/` exists)
 
