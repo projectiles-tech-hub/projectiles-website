@@ -15,8 +15,27 @@ built from the approved designs, so the designs must be complete and exact enoug
 
 ## 2. The company and what the website is for
 
-Projectiles Tech Hub Limited (RC 7987623) is a company in Benin City, Edo State, Nigeria, working across the
-housing supply chain, from raw materials to finished estate plots.
+In Emmanuel's words (28 October 2026); all website content follows this:
+
+Projectiles Tech Hub Limited is a project management, construction, IT and real estate company registered in
+Nigeria (RC 7987623) and headquartered in Benin City, Edo State.
+
+At its core, the company plans, manages and delivers construction projects for private and public clients, bringing
+professional discipline to scheduling, budgeting, procurement and quality control.
+
+Alongside its core services, the company develops its own estate projects, including the range of Primrose Hill
+Estates, and operates a set of vertical businesses that strengthen its supply chain: cement distribution, block
+moulding, sand dredging, and logistics and haulage. Together these form an integrated ecosystem that gives the
+company greater control over cost, quality and timelines than firms reliant on third-party suppliers.
+
+The company is grounded in expertise in construction and property development, property management, property
+valuation, land administration and title perfection, geo-services, and agency and property brokerage, enabling it
+to deliver projects on secure legal footing and to offer clients and investors confidence in the assets they build
+and hold.
+
+**What this means for the content:** project management and construction come first, then real estate
+development, then the four supply businesses. The supply chain is shown as the reason the company controls cost,
+quality and time; the legal and property expertise as the reason clients and investors can trust its assets.
 
 The website must do four things, in this order of importance:
 

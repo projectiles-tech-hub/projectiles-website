@@ -28,7 +28,13 @@ Updated: 28 October 2026.
 
 ## Questions for Emmanuel
 
-1. **Home page**: approve, or say what to change (links in `designs.md`).
+1. **Home page**: approve, or say what to change (links in `designs.md`). Wording rewritten 28 October 2026 to
+   Emmanuel's company description.
+2. **IT**: the company description includes IT, but there is no IT business line yet. Should IT be a business line
+   with its own page (making eight), or mentioned only in the company profile?
+3. **Expertise areas** (property management, valuation, land administration and title perfection, geo-services,
+   agency and property brokerage): offered to clients as services (shown on the site as services under a business
+   line), or only background that builds trust?
 
 ## Next
 
