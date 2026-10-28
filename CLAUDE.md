@@ -31,8 +31,8 @@ not switched on when its stage starts, ask Emmanuel to switch it on.
 
 ## Rules for the code
 
-- The built site is plain files (HTML, CSS, JavaScript, images, plus one PHP file for the contact form), so it runs
-  on Namecheap shared hosting.
+- The built site is plain files (HTML, CSS, JavaScript, images), hosted on Vercel. The only server code is the
+  Vercel Functions in `site/api/` (the form handler and the daily rebuild).
 - Contact details and business lines live in one place (`site/src/config/company.ts`), not repeated across pages.
 - Each estate community is one file in `site/src/content/estates/`; adding a file adds the community everywhere.
 - Each investment offer is one file in `site/src/content/offers/`; adding a file adds the offer to the Invest

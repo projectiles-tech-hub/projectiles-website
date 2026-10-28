@@ -48,7 +48,7 @@ for (const f of pages) {
     if (/^(https?:|mailto:|tel:|data:|\/\/)/.test(href)) continue;
     const [pathPart, hash] = href.split('#');
     const path = pathPart === '' ? from : new URL(pathPart, `http://x${from}`).pathname;
-    if (path === '/enquiry.php') continue;
+    if (path.startsWith('/api/')) continue;
     const target = path.endsWith('/') ? join(dist, path, 'index.html') : join(dist, decodeURIComponent(path));
     if (!(await exists(target))) { fail(`${from} links to missing ${href}`); continue; }
     if (hash && path.endsWith('/') && !idsOf.get(path)?.has(hash)) fail(`${from} links to missing anchor ${href}`);

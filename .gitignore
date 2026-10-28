@@ -16,3 +16,6 @@ enquiry.config.php
 Thumbs.db
 .vscode/
 .idea/
+
+# Vercel local build output
+.vercel/

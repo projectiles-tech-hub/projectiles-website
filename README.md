@@ -28,7 +28,8 @@ Where to change things:
 | Estate communities (one file each) | `site/src/content/estates/` |
 | Investment offers (one file each) | `site/src/content/offers/` |
 | Gallery photos and videos | `site/src/content/gallery/` |
-| Contact form (emails enquiries) | `site/public/enquiry.php` |
+| Contact form (emails enquiries) | `site/api/enquiry.js` |
+| Hosting settings (headers, daily rebuild) | `site/vercel.json` |
 
 Copyright Projectiles Tech Hub Limited. All rights reserved. This repository is visible to the public, but no
 licence is granted to copy or use its code or content without written permission.

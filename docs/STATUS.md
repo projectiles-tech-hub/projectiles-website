@@ -21,12 +21,13 @@ Updated: 28 October 2026.
 - Placeholders still in use: photos, the Managing Director profile and photo, investment offer figures, estate
   details (all three estates show "Coming soon"), gallery items, the privacy notice text, opening hours (hidden until
   given), social media links other than YouTube (hidden until given), and the Turnstile key.
-- Automatic publishing is ready; it starts once the hosting is bought and the settings in `DEPLOYMENT.md` are added.
+- Hosting moved to Vercel (28 October 2026): the form now sends email through Resend. Publishing starts once the
+  Vercel project, Resend and the domain are set up as in `DEPLOYMENT.md`.
 
 ## Settled
 
 - YouTube channel: @primrosehillestates.
-- Hosting: Namecheap shared hosting.
+- Hosting: Vercel, Pro plan (28 October 2026; previously Namecheap shared hosting). Form emails: Resend.
 - Domain: projectilestechhublimited.com, with projectilestechhublimited.com.ng pointing to it.
 - Investment offer details come later; the Invest page uses sample figures until then.
 - Each investment offer has its own page, opened from the Invest page.

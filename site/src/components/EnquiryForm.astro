@@ -12,7 +12,7 @@ const { id, form, fields, button = 'Send enquiry', thanksHeading = 'Thank you. W
 const errors: Record<string, string> = { text: 'Enter your full name', phone: 'Enter a Nigerian phone number, for example 810 792 7331', email: 'Enter an email address like name@example.com', select: 'Choose an option', textarea: 'Tell us a little about what you need' };
 ---
 <div class="ef" id={id} data-form-wrap>
-  <form class="ef__form" action="/enquiry.php" method="post" novalidate data-enquiry-form>
+  <form class="ef__form" action="/api/enquiry" method="post" novalidate data-enquiry-form>
     <input type="hidden" name="form" value={form} />
     <input type="hidden" name="page" value={Astro.url.pathname} />
     <div class="ef__hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
