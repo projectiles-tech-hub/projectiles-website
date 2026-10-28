@@ -23,7 +23,7 @@ States: **Not started**, **To review** (sent to Emmanuel), **Changes asked** (wi
 
 | No. | Page | 1366 | 768 | 360 | State | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| 01 | Home | [1366](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=106-846) | [768](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=109-1063) | [360](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=110-843) | To review | Direction 1. All blocks from brief 8.1. Words are draft, photos are placeholders, videos are samples. Sent 28 October 2026. |
+| 01 | Home | [1366](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=106-846) | [768](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=109-1063) | [360](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=110-843) | Approved 28 October 2026 | Direction 1. Wording follows the company description; "Why work with us" has nine reasons with a photo. Words are draft, photos are placeholders, videos are samples. |
 | 02 | What we do | | | | Not started | |
 | 03 | Business line page | | | | Not started | |
 | 04 | Estate projects | | | | Not started | |

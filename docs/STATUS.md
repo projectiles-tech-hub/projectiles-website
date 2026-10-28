@@ -13,7 +13,7 @@ Updated: 28 October 2026.
 - Design system approved on 28 October 2026: Direction 1 (light and calm), the logo (all three colour options, each
   used where it fits; SVG files in `brand/logo/`), spacing, grid and shape, and motion (Material Design 3 timings).
 - Fonts: Source Sans 3 only (the FindHouseQuick font).
-- Page designs started: Home at 1366, 768 and 360 waiting for Emmanuel (links in `designs.md`).
+- Page designs: Home approved 28 October 2026; the other pages are being designed.
 - Nothing built yet.
 
 ## Settled
@@ -31,8 +31,7 @@ Updated: 28 October 2026.
 
 ## Questions for Emmanuel
 
-1. **Home page**: approve, or say what to change (links in `designs.md`). Wording rewritten 28 October 2026 to
-   Emmanuel's company description.
+None open.
 
 ## Next
 
