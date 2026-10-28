@@ -10,14 +10,14 @@ States: **Not started**, **To review** (sent to Emmanuel), **Changes asked** (wi
 
 | Part | Figma link | State | Notes |
 | --- | --- | --- | --- |
-| Directions (colour and type options) | | Not started | |
-| Logo (redrawn, all versions) | | Not started | |
-| Colours | | Not started | |
-| Type | | Not started | |
-| Spacing, grid and shape | | Not started | |
+| Directions (colour and type options) | | Not started | Emmanuel asked for the components first (28 October 2026). |
+| Logo (redrawn, all versions) | [Logo (working)](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=31-158) | Not started | Working version only: the original shape redrawn as vectors in the website colours, so the header and footer could be built. Recoloured options for his choice still to come. |
+| Colours | [Colours and type](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=34-3) | To review | FindHouseQuick colours plus 8 added colours, each with its reason (deep green, pressed shades, mist text on dark, field border, WhatsApp and YouTube official colours). Contrast table: every pair passes WCAG 2.1 AA. |
+| Type | [Colours and type](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=34-3) | To review | Source Sans 3 only; desktop, tablet and phone scale; test line shown. |
+| Spacing, grid and shape | | Not started | Spacing (steps of 4) and radius are already set up as variables; the board with the layout grid is still to draw. |
 | Motion | | Not started | |
-| Icons | | Not started | |
-| Components | | Not started | |
+| Icons | [Icons](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=19-2) | To review | 42 icons in outline and filled styles, plus the 7 official brand marks. |
+| Components | [Buttons](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=26-17), [Icon buttons, links, badges and headers](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=27-17), [Cards and photo slots](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=29-48), [Forms, notices and media](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=30-119), [Header](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=31-196), [Footer and floating WhatsApp](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=32-254), [Gallery and map](https://www.figma.com/design/zEItN6SP92NHfsFiMbx8B7/Projectiles-Website?node-id=33-410) | To review | Everything in brief section 7.6, with states. Sent 28 October 2026. |
 
 ## Pages
 

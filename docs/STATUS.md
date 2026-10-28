@@ -7,7 +7,11 @@ Updated: 28 October 2026.
 - Repository, plan, design brief, logo and skills in place.
 - Claude makes the designs in Figma; the website uses the FindHouseQuick colours, blended with any other colours
   needed; investment offers on a dedicated Invest page.
-- Nothing designed or built yet.
+- Design components are in Figma and waiting for Emmanuel's approval (see `designs.md` for the links): icons,
+  buttons, links, badges, section header, breadcrumbs, cards, photo slots, form fields, notices, video player,
+  gallery, map, header and footer, plus the colours and type they use.
+- Fonts: Source Sans 3 only (the FindHouseQuick font).
+- Nothing built yet.
 
 ## Settled
 
@@ -21,11 +25,15 @@ Updated: 28 October 2026.
 
 ## Questions for Emmanuel
 
-None at the moment.
+1. **Components**: approve, or say what to change (Figma links in `designs.md`).
+2. **Added colours**: approve the 8 colours added to the FindHouseQuick palette (shown with reasons on the
+   "Colours and type" board), including a darker grey for form field outlines so fields can be seen.
 
 ## Next
 
 1. [ ] Design system in Figma, approved (brief: `DESIGN_BRIEF.md`; progress: `designs.md`).
+   - [x] Icons and components drawn (28 October 2026), waiting for approval.
+   - [ ] Logo options, spacing and grid, and motion boards.
 2. [ ] Page designs in Figma, approved.
 3. [ ] Build the pages.
 4. [ ] Hosting, domain, forms, YouTube feed and automatic publishing.
