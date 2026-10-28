@@ -4,9 +4,9 @@ Updated: 28 October 2026.
 
 ## Where things stand
 
-- Pull request #1 merged: repository, plan, design brief, logo and skills.
-- Pull request #2 (awaiting approval): Claude makes the designs in Figma; the website uses the FindHouseQuick colours,
-  blended with any other colours needed; investment offers on a dedicated Invest page.
+- Repository, plan, design brief, logo and skills in place.
+- Claude makes the designs in Figma; the website uses the FindHouseQuick colours, blended with any other colours
+  needed; investment offers on a dedicated Invest page.
 - Nothing designed or built yet.
 
 ## Questions for Emmanuel
