@@ -9,18 +9,21 @@ Updated: 28 October 2026.
   needed; investment offers on a dedicated Invest page.
 - Nothing designed or built yet.
 
+## Settled
+
+- YouTube channel: @primrosehillestates.
+- Hosting: Namecheap shared hosting.
+- Domain: projectilestechhublimited.
+- Investment offer details come later; the Invest page uses sample figures until then.
+
 ## Questions for Emmanuel
 
-1. **YouTube channel**: which channel do the website videos come from (its link or handle)?
-2. **Hosting**: Namecheap shared hosting or a Spaceship Starlight virtual machine (see `DEPLOYMENT.md`).
-3. **Domain**: projectilespa.com, or another address?
-4. **Investment offers**: the details of each offer (amounts, terms, returns, documents) for the Invest page.
+1. **Domain extension**: .com, .com.ng or another?
 
 ## Next
 
-1. [ ] YouTube channel.
-2. [ ] Design system in Figma, approved (brief: `DESIGN_BRIEF.md`; progress: `designs.md`).
-3. [ ] Page designs in Figma, approved.
-4. [ ] Build the pages.
-5. [ ] Hosting, domain, forms, YouTube feed and automatic publishing.
-6. [ ] Go live.
+1. [ ] Design system in Figma, approved (brief: `DESIGN_BRIEF.md`; progress: `designs.md`).
+2. [ ] Page designs in Figma, approved.
+3. [ ] Build the pages.
+4. [ ] Hosting, domain, forms, YouTube feed and automatic publishing.
+5. [ ] Go live.

@@ -348,16 +348,16 @@ recorded there as "Approved" or "Changes asked".
 | Phone and WhatsApp | +234 810 792 7331 |
 | Managing Director | Emmanuel Chukwuka Oraegbu (always written this way, without letters after the name) |
 | Business lines | Real estate development; construction; project management; cement distribution; block moulding; sand dredging; logistics and haulage |
+| YouTube channel | @primrosehillestates (https://www.youtube.com/@primrosehillestates) |
+| Website address | projectilestechhublimited (extension to be confirmed; show it as projectilestechhublimited.com until then) |
 | Estate communities | Primrose Hill Estates, Obazuwa; Primrose Hill Estates, Uzala; Primrose Hill Estates, Ekole (all coming soon) |
 
 ## 12. Still to come, and what to do meanwhile
 
 | Missing | Meanwhile |
 | --- | --- |
-| YouTube channel link | Use realistic sample video cards; leave the channel name as "Projectiles on YouTube" |
 | Real photos and videos | Labelled placeholders (Section 10) |
 | Estate details (sizes, plots, amenities, prices) | Design the "Now selling" state with realistic sample figures marked as samples |
-| Web address (domain) | Use "projectiles.example" wherever an address appears |
 | Privacy notice text | Use sample headings and paragraphs |
 | Opening hours | Leave a slot; mark it optional |
 | Investment offer details (amounts, terms, returns, documents) | Realistic sample figures marked as samples |
