@@ -1,0 +1,30 @@
+---
+import Brand from './Brand.astro';
+import { company } from '../config/company';
+---
+<a class="fwa" href={company.whatsappHref} target="_blank" rel="noopener" data-fwa>
+  <Brand name="whatsapp" size={28} color="#111827" />
+  <span class="visually-hidden">Chat on WhatsApp (opens WhatsApp)</span>
+</a>
+<script>
+  const fwa = document.querySelector<HTMLElement>('[data-fwa]');
+  const first = document.querySelector('main .btn--whatsapp');
+  if (fwa) {
+    if (first && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(([e]) => fwa.classList.toggle('is-shown', !e.isIntersecting && e.boundingClientRect.top < 0));
+      io.observe(first);
+    } else fwa.classList.add('is-shown');
+  }
+</script>
+<style>
+  .fwa {
+    position: fixed; right: 16px; bottom: 16px; z-index: 30; width: 56px; height: 56px; border-radius: 999px;
+    display: none; align-items: center; justify-content: center; background: var(--whatsapp);
+    box-shadow: 0 6px 16px rgba(17, 24, 39, 0.24); /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+    opacity: 0; transform: translateY(16px); pointer-events: none;
+    transition: opacity var(--t-menu) var(--ease-arrive), transform var(--t-menu) var(--ease-arrive), background-color var(--t-hover) var(--ease-standard);
+  }
+  .fwa:hover { background: var(--whatsapp-hover); }
+  .fwa.is-shown { opacity: 1; transform: none; pointer-events: auto; }
+  @media (max-width: 767px) { .fwa { display: inline-flex; } }
+</style>

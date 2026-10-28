@@ -1,0 +1,90 @@
+---
+// The estate plot map: drawn from the plot layout in the estate's file. Tap a plot to see its details.
+import Button from './Button.astro';
+type Plot = { n: string; status: 'Available' | 'Reserved' | 'Sold'; size?: string; price?: string; note?: string };
+type Block = { name: string; plots: Plot[] };
+interface Props { blocks: Block[]; estate: string }
+const { blocks, estate } = Astro.props;
+const first = blocks.flatMap((b) => b.plots).find((p) => p.status === 'Available') ?? blocks[0]?.plots[0];
+---
+<div class="pm" data-plotmap data-estate={estate}>
+  <ul class="pm__legend" aria-label="Key">
+    <li><span class="pm__sw pm__sw--Available" aria-hidden="true"></span>Available</li>
+    <li><span class="pm__sw pm__sw--Reserved" aria-hidden="true"></span>Reserved</li>
+    <li><span class="pm__sw pm__sw--Sold" aria-hidden="true"></span>Sold</li>
+    <li class="t-small c-hint">Tap a plot to see its details</li>
+  </ul>
+  <div class="pm__body">
+    <div class="pm__plan">
+      {blocks.map((b) => (
+        <div class="pm__block" role="group" aria-label={`Block ${b.name}`}>
+          {b.plots.map((p) => (
+            <button type="button" class:list={['pm__plot', `pm__plot--${p.status}`]} aria-pressed={p === first ? 'true' : 'false'}
+              data-n={p.n} data-status={p.status} data-size={p.size ?? ''} data-price={p.price ?? ''} data-note={p.note ?? ''}>
+              {p.n}<span class="visually-hidden">, {p.status}</span>
+            </button>
+          ))}
+        </div>
+      ))}
+    </div>
+    <div class="pm__panel" aria-live="polite">
+      <p class="t-subtitle">Plot <span data-pm="n">{first?.n}</span></p>
+      <dl>
+        <div><dt class="t-label c-2">Status</dt><dd class="t-strong" data-pm="status">{first?.status}</dd></div>
+        <div><dt class="t-label c-2">Size</dt><dd class="t-strong" data-pm="size">{first?.size || 'To be confirmed'}</dd></div>
+        <div><dt class="t-label c-2">Price</dt><dd class="t-strong" data-pm="price">{first?.price || 'Ask us'}</dd></div>
+        <div><dt class="t-label c-2">Position</dt><dd class="t-strong" data-pm="note">{first?.note || '–'}</dd></div>
+      </dl>
+      <Button size="medium" href="#enquire" label={`Enquire about plot ${first?.n}`} full data-pm-enquire />
+    </div>
+  </div>
+  <details class="pm__list">
+    <summary class="t-strong">See all plots as a list</summary>
+    <table>
+      <thead><tr><th scope="col">Plot</th><th scope="col">Status</th><th scope="col">Size</th><th scope="col">Price</th></tr></thead>
+      <tbody>{blocks.flatMap((b) => b.plots).map((p) => <tr><td>{p.n}</td><td>{p.status}</td><td>{p.size}</td><td>{p.price}</td></tr>)}</tbody>
+    </table>
+  </details>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-plotmap]').forEach((map) => {
+    const set = (k: string, v: string) => { const el = map.querySelector(`[data-pm="${k}"]`); if (el) el.textContent = v; };
+    const btn = map.querySelector<HTMLAnchorElement>('[data-pm-enquire]');
+    map.addEventListener('click', (e) => {
+      const p = (e.target as HTMLElement).closest<HTMLButtonElement>('.pm__plot');
+      if (!p) return;
+      map.querySelectorAll('.pm__plot').forEach((x) => x.setAttribute('aria-pressed', String(x === p)));
+      const d = p.dataset;
+      set('n', d.n!); set('status', d.status!); set('size', d.size || 'To be confirmed'); set('price', d.price || 'Ask us'); set('note', d.note || '–');
+      if (btn) { const s = btn.querySelector('span'); if (s) s.textContent = `Enquire about plot ${d.n}`; btn.dataset.plot = d.n; }
+      const msg = document.querySelector<HTMLTextAreaElement>('#enquire textarea');
+      if (msg && !msg.value) msg.placeholder = `I am interested in plot ${d.n}.`;
+    });
+  });
+</script>
+<style>
+  .pm__legend { list-style: none; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-bottom: 16px; }
+  .pm__legend li { display: flex; align-items: center; gap: 8px; }
+  .pm__sw { width: 20px; height: 20px; }
+  .pm__sw--Available, .pm__plot--Available { background: var(--green-700); color: var(--white); }
+  .pm__sw--Reserved, .pm__plot--Reserved { background: var(--green-50); color: var(--green-700); outline: 1.5px dashed var(--green-700); outline-offset: -1.5px; }
+  .pm__sw--Sold, .pm__plot--Sold { background: var(--line); color: var(--ink-600); }
+  .pm__body { display: grid; gap: 16px; }
+  .pm__plan { background: var(--bg-page); padding: 16px; display: flex; flex-direction: column; gap: 36px; overflow-x: auto; }
+  .pm__block { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 2px; }
+  .pm__plot { min-height: 64px; border: 0; font: 500 14px/20px var(--font); cursor: pointer; transition: transform var(--t-hover) var(--ease-standard); }
+  .pm__plot:hover { transform: translateY(-2px); }
+  .pm__plot[aria-pressed='true'] { outline: 3px solid var(--ink-900); outline-offset: 0; position: relative; z-index: 1; }
+  .pm__panel { background: var(--white); border: 1px solid var(--line); padding: 24px; display: flex; flex-direction: column; gap: 12px; } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .pm__panel dl div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .pm__panel dd { text-align: right; }
+  .pm__list { margin-top: 16px; }
+  .pm__list summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; color: var(--link); }
+  .pm__list table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .pm__list th, .pm__list td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
+  @media (min-width: 1200px) {
+    .pm__body { grid-template-columns: 1fr 320px; align-items: start; }
+    .pm__plot { min-height: 84px; }
+    .pm__block { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
+  }
+</style>

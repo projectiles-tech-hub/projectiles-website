@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import OfferCard from '../../components/OfferCard.astro';
+import Reasons from '../../components/Reasons.astro';
+import Docs from '../../components/Docs.astro';
+import ContactList from '../../components/ContactList.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import { getCollection } from 'astro:content';
+import { company } from '../../config/company';
+const offers = (await getCollection('offers')).sort((a, b) => a.data.order - b.data.order);
+const anySample = offers.some((o) => o.data.sample);
+const RISK = 'Investments carry risk. Returns are not guaranteed and you could get back less than you invest. Read the risk notes and offer documents before you invest.';
+---
+<Base title="Invest" current="/invest/" description="Invest with Projectiles Tech Hub Limited in offers backed by real assets: our materials trade, our equipment and our estates.">
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'Invest' }]} heading={`Invest with ${company.name}`} ratio="4:3" mobileRatio="16:9"
+    text="Put your money into real projects: our materials trade, our equipment and our estates, managed by a registered company in Benin City.">
+    <Fragment slot="actions"><Button href="#enquire" label="Talk to us about investing" /><Button variant="whatsapp" /></Fragment>
+  </Hero>
+  <Section bg="page">
+    <div class="reveal"><SectionHeader label="Why invest with us" heading="Backed by real businesses" /></div>
+    <Reasons cols={4} items={[
+      ['Real assets behind every offer', 'Each offer is tied to something you can see: materials in trade, equipment at work or titled land.'],
+      ['Businesses that support each other', 'Our supply businesses feed our construction and estate projects, so money keeps working inside one group.'],
+      ['Secure legal footing', 'Land administration, title perfection and valuation are done in house, so assets are properly documented.'],
+      ['A registered company you can visit', `Registered in Nigeria (${company.rc}), with our office at 39 Ohonre Street, Ugbowo, Benin City.`],
+    ]} />
+  </Section>
+  <Section>
+    <div class="reveal"><SectionHeader label="Investment offers" heading="Choose an offer" text={`${anySample ? 'All figures are samples until the offers are confirmed. ' : ''}Open an offer to see its full terms, risks and documents.`} /></div>
+    <div class="grid t2 d3">{offers.map((o) => <div class="reveal flex"><OfferCard href={`/invest/${o.id}/`} name={o.data.name} line={o.data.line} minimum={o.data.minimum} term={o.data.term} expectedReturn={o.data.expectedReturn} sample={o.data.sample} /></div>)}</div>
+  </Section>
+  <Section bg="page">
+    <div class="reveal"><SectionHeader label="How it works" heading="From enquiry to investment" /></div>
+    <Reasons cols={4} numbered items={[
+      ['Enquire', 'Tell us which offer interests you and roughly how much you want to invest.'],
+      ['Talk it through', 'We explain the terms and risks and answer your questions.'],
+      ['Sign and pay', 'You sign the offer documents and pay into our company account.'],
+      ['Receive your returns', 'Returns are paid as set out in your offer documents, with regular updates.'],
+    ]} />
+  </Section>
+  <Section>
+    <div class="reveal"><SectionHeader label="Questions" heading="Frequently asked questions" /></div>
+    <Reasons single items={[
+      ['Who can invest?', 'Any adult, in Nigeria or abroad, who meets the requirements in the offer documents.'],
+      ['Are returns guaranteed?', 'No. Expected returns are targets, not promises. Read the risk notes for each offer.'],
+      ['Can I take my money out early?', 'Each offer explains how and when you can exit.'],
+      ['How will I be updated?', 'You receive regular updates on the business or asset your money supports.'],
+    ]} />
+  </Section>
+  <Section bg="page">
+    <div class="reveal"><SectionHeader label="Documents and disclosures" heading="Read before you invest" text={RISK} /></div>
+    <Docs items={[{ name: 'Investment terms', meta: 'PDF (to come)' }, { name: 'Risk notes', meta: 'PDF (to come)' }, { name: 'Company registration certificate', meta: 'PDF (to come)' }]} />
+  </Section>
+  <Section id="enquire">
+    <div class="two-col top">
+      <div class="stack reveal" style="--gap:28px">
+        <SectionHeader label="Enquire" heading="Talk to us about investing" text="Tell us what interests you and we will call you back to talk it through. You can also chat on WhatsApp." />
+        <div><Button variant="whatsapp" /></div>
+        <ContactList />
+      </div>
+      <div class="reveal"><EnquiryForm id="enquiry" form="Investor enquiry" button="Send my enquiry" fields={[
+        { type: 'text', name: 'name', label: 'Full name', required: true, placeholder: 'Your full name' },
+        { type: 'phone', name: 'phone', label: 'Phone or WhatsApp number', help: 'We call or WhatsApp you on this number.', required: true },
+        { type: 'email', name: 'email', label: 'Email', placeholder: 'you@example.com' },
+        { type: 'select', name: 'offer', label: 'Offer of interest', required: true, options: [...offers.map((o) => o.data.name), 'Not sure yet'] },
+        { type: 'select', name: 'amount', label: 'Amount you are thinking of investing', options: ['Under ₦1 million', '₦1 million to ₦5 million', '₦5 million to ₦20 million', 'Over ₦20 million'], help: 'A rough range is fine.' },
+        { type: 'textarea', name: 'message', label: 'Message' },
+      ]} /></div>
+    </div>
+  </Section>
+</Base>
+<style>.flex { display: flex; } .flex > :global(*) { flex: 1; }</style>

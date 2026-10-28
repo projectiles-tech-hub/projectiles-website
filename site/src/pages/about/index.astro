@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import Photo from '../../components/Photo.astro';
+import Checks from '../../components/Checks.astro';
+import Reasons from '../../components/Reasons.astro';
+import FactCard from '../../components/FactCard.astro';
+import Cta from '../../components/Cta.astro';
+import { company, expertise, fullAddress } from '../../config/company';
+---
+<Base title="About us" current="/about/" description={`${company.description} Managing Director: ${company.managingDirector.name}.`}>
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'About us' }]} heading="About us" text={company.description} ratio="3:2" mobileRatio="16:9">
+    <Fragment slot="actions"><Button href="/what-we-do/" label="What we do" /><Button variant="whatsapp" /></Fragment>
+  </Hero>
+  <Section bg="page">
+    <div class="two-col">
+      <div class="reveal"><SectionHeader label="Our story" heading="Professional discipline, from plan to handover"
+        text="At our core, we plan, manage and deliver construction projects for private and public clients, bringing professional discipline to scheduling, budgeting, procurement and quality control. Alongside this, we develop our own estates, including the Primrose Hill Estates range." /></div>
+      <div class="reveal"><Photo ratio="4:3" /></div>
+    </div>
+  </Section>
+  <Section>
+    <div class="reveal"><SectionHeader label="How our businesses work together" heading="One integrated group" text="Our supply businesses strengthen every project, giving us more control over cost, quality and timelines than firms that rely on outside suppliers." /></div>
+    <Reasons cols={3} items={[
+      ['Core services', 'Project management and construction for private and public clients.'],
+      ['Our own estates', 'Real estate development, including the Primrose Hill Estates range.'],
+      ['Our supply businesses', 'Cement distribution, block moulding, sand dredging, and logistics and haulage.'],
+    ]} />
+  </Section>
+  <Section bg="page">
+    <div class="two-col top">
+      <div class="reveal"><SectionHeader label="Our expertise" heading="Built on secure legal footing" text="Our expertise lets us deliver projects on secure legal footing and give clients and investors confidence in the assets they build and hold." /></div>
+      <div class="reveal"><Checks items={expertise} /></div>
+    </div>
+  </Section>
+  <Section>
+    <div class="md">
+      <div class="reveal md__photo"><Photo ratio="4:5" sizes="400px" /></div>
+      <div class="stack reveal" style="--gap:12px">
+        <p class="t-label c-link">Leadership</p>
+        <h2 class="t-h2">{company.managingDirector.name}</h2>
+        <p class="t-subtitle c-2">{company.managingDirector.title}</p>
+        <p class="t-body-lg c-2">{company.managingDirector.profile}</p>
+      </div>
+    </div>
+  </Section>
+  <Section bg="page">
+    <div class="reveal"><SectionHeader label="Registration" heading="A registered Nigerian company" /></div>
+    <div class="grid t2 d2">
+      <div class="reveal"><FactCard number={company.rc} label="Registered with the Corporate Affairs Commission" /></div>
+      <div class="reveal"><FactCard number={company.address.city} label={`Head office: ${fullAddress}`} /></div>
+    </div>
+  </Section>
+  <Cta label="Work with us" heading="Tell us about your project" text="Chat with us on WhatsApp for the quickest reply, or send the contact form and we will call you back." />
+</Base>
+<style>
+  .md { display: grid; gap: 24px; align-items: center; }
+  .md__photo { max-width: 400px; }
+  @media (min-width: 768px) { .md { grid-template-columns: 320px 1fr; gap: 40px; } }
+  @media (min-width: 1200px) { .md { grid-template-columns: 400px 1fr; gap: 24px; } }
+</style>

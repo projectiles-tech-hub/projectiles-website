@@ -1,0 +1,138 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import EstateCard from '../../components/EstateCard.astro';
+import Photo from '../../components/Photo.astro';
+import Notice from '../../components/Notice.astro';
+import FactCard from '../../components/FactCard.astro';
+import IconItems from '../../components/IconItems.astro';
+import Checks from '../../components/Checks.astro';
+import Reasons from '../../components/Reasons.astro';
+import PlotMap from '../../components/PlotMap.astro';
+import Gallery from '../../components/Gallery.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
+import MapBlock from '../../components/MapBlock.astro';
+import EmptyState from '../../components/EmptyState.astro';
+import ContactList from '../../components/ContactList.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { company } from '../../config/company';
+export async function getStaticPaths() {
+  const all = await getCollection('estates');
+  return all.map((estate) => ({ params: { slug: estate.id }, props: { estate, all } }));
+}
+const { estate, all } = Astro.props as { estate: CollectionEntry<'estates'>; all: CollectionEntry<'estates'>[] };
+const e = estate.data;
+const selling = e.status !== 'Coming soon';
+const others = all.filter((x) => x.id !== estate.id && !x.id.startsWith('sample')).sort((a, b) => a.data.order - b.data.order);
+const isSample = estate.id.startsWith('sample');
+---
+<Base title={e.name} current="/estates/" noindex={isSample} description={`${e.name}, ${e.location}. ${e.summary}`}
+  jsonld={[{ '@context': 'https://schema.org', '@type': 'Place', name: e.name, address: { '@type': 'PostalAddress', addressLocality: e.location, addressCountry: 'NG' } }]}>
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'Estate projects', href: '/estates/' }, { label: e.name }]} badge={e.status} heading={e.name}
+    text={selling ? `${e.location}. ${e.summary}` : `${e.location}. A planned community of serviced plots, coming soon.`} photo={e.photo} ratio="4:3" mobileRatio="4:3">
+    <Fragment slot="actions"><Button href="#enquire" label={selling ? 'Enquire about plots' : 'Register your interest'} /><Button variant="whatsapp" /></Fragment>
+  </Hero>
+
+  {!selling && (
+    <Section bg="page">
+      <div class="reveal"><SectionHeader label="About this estate" heading={`A new community in ${e.word}`} text={e.teaser} /></div>
+      <Notice title="Plots are not on sale yet" text="Register your interest and we will tell you first when they are." />
+    </Section>
+  )}
+
+  {selling && e.overview.length > 0 && (
+    <Section bg="page">
+      <div class="reveal"><SectionHeader label="Overview" heading="The estate at a glance" /></div>
+      <div class="grid t2 d4">{e.overview.map((o) => <div class="reveal"><FactCard number={o.number} label={o.label} /></div>)}</div>
+    </Section>
+  )}
+  {selling && e.amenities.length > 0 && (
+    <Section>
+      <div class="reveal"><SectionHeader label="Amenities" heading="What the estate has" /></div>
+      <IconItems items={e.amenities} />
+    </Section>
+  )}
+  {selling && e.documents.length > 0 && (
+    <Section bg="page">
+      <div class="two-col">
+        <div class="stack reveal" style="--gap:28px">
+          <SectionHeader label="Title and documents" heading="Secure title from the start" text="We handle land administration and title perfection ourselves, so every plot comes with the right documents." />
+          <Checks items={e.documents} />
+        </div>
+        <div class="reveal"><Photo ratio="4:3" /></div>
+      </div>
+    </Section>
+  )}
+  {selling && e.plots.length > 0 && (
+    <Section>
+      <div class="reveal"><SectionHeader label="Estate plan" heading="Choose your plot" text="Tap a plot to see its size, status and price." /></div>
+      <PlotMap blocks={e.plots} estate={e.name} />
+    </Section>
+  )}
+  {selling && e.photos.length > 0 && (
+    <Section bg="page">
+      <div class="reveal"><SectionHeader label="Photos and videos" heading="See the estate" /></div>
+      <Gallery items={e.photos.map((p) => ({ ...p, topic: 'Estates' }))} id={`gallery-${estate.id}`} />
+      {e.videos.map((v) => <VideoPlayer id={v.id} title={v.title} />)}
+    </Section>
+  )}
+  {selling && (
+    <Section>
+      <div class="reveal"><SectionHeader label="Location" heading="Where the estate is" /></div>
+      <MapBlock title={e.name} lines={[e.location]} mapsUrl={e.mapsUrl ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(e.location)}`} />
+      {e.landmarks.length > 0 && <IconItems items={e.landmarks.map((l) => ({ icon: 'location', label: l }))} />}
+    </Section>
+  )}
+  {selling && e.steps.length > 0 && (
+    <Section bg="page">
+      <div class="reveal"><SectionHeader label="How to subscribe" heading={`Owning a plot in ${e.steps.length} steps`} /></div>
+      <Reasons items={e.steps} cols={4} numbered />
+    </Section>
+  )}
+
+  <Section bg={selling ? 'surface' : 'surface'} id="enquire">
+    <div class="two-col top">
+      <div class="stack reveal" style="--gap:28px">
+        <SectionHeader label={selling ? 'Enquire' : 'Register your interest'} heading={selling ? `Ask about plots in ${e.word}` : 'Be first to hear when plots go on sale'}
+          text={selling ? 'Chat on WhatsApp for the quickest reply, or send the form and we will call you back.' : 'Leave your details and we will contact you before sales open, with plot sizes, prices and payment options.'} />
+        <div><Button variant="whatsapp" /></div>
+        <ContactList />
+      </div>
+      <div class="reveal">
+        <EnquiryForm id="enquiry" form={`${selling ? 'Plot enquiry' : 'Register interest'}: ${e.name}`} button={selling ? 'Send enquiry' : 'Register my interest'}
+          thanksHeading={selling ? 'Thank you. We have your enquiry.' : 'Thank you. You are on the list.'}
+          thanksText={selling ? 'We reply within one working day, by phone, WhatsApp or email.' : 'We will contact you before plots go on sale.'}
+          fields={[
+            { type: 'text', name: 'name', label: 'Full name', required: true, placeholder: 'Your full name' },
+            { type: 'phone', name: 'phone', label: 'Phone or WhatsApp number', help: 'We call or WhatsApp you on this number.', required: true },
+            { type: 'email', name: 'email', label: 'Email', placeholder: 'you@example.com' },
+            { type: 'textarea', name: 'message', label: 'Message', help: 'For example, the plot size you want.' },
+          ]} />
+      </div>
+    </div>
+  </Section>
+
+  {e.videos.length === 0 && (
+    <Section bg="page">
+      <div class="reveal"><SectionHeader label="Videos" heading="Videos of this estate" /></div>
+      <EmptyState title="Videos of this estate are coming soon" text="Subscribe on YouTube to see new videos first." action={{ label: 'Subscribe on YouTube', href: company.youtube.subscribeUrl }} />
+    </Section>
+  )}
+  {selling && e.faq.length > 0 && (
+    <Section bg="page">
+      <div class="reveal"><SectionHeader label="Questions" heading="Frequently asked questions" /></div>
+      <Reasons items={e.faq} single />
+    </Section>
+  )}
+  {others.length > 0 && (
+    <Section>
+      <div class="reveal"><SectionHeader label="Estate projects" heading="Other Primrose Hill Estates communities" action={{ label: 'See all estates', href: '/estates/' }} /></div>
+      <div class="grid t2 d3">{others.map((o) => <div class="reveal flex"><EstateCard href={`/estates/${o.id}/`} name={o.data.name} location={o.data.location} summary={o.data.summary} status={o.data.status} word={o.data.word} photo={o.data.photo} /></div>)}</div>
+    </Section>
+  )}
+</Base>
+<style>.flex { display: flex; } .flex > :global(*) { flex: 1; }</style>

@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
+import VideoCard from '../../components/VideoCard.astro';
+import FilterChips from '../../components/FilterChips.astro';
+import EmptyState from '../../components/EmptyState.astro';
+import { getVideos } from '../../data/videos';
+import { company } from '../../config/company';
+const videos = await getVideos();
+const [latest, ...rest] = videos;
+const topics = ['Estates', 'Construction', 'Supply', 'Company'].filter((t) => rest.some((v) => v.topic === t));
+const nice = (d: string) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title="Videos" current="/videos/" description="Site tours, progress updates and a look inside our yards, from the Projectiles Tech Hub YouTube channel.">
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'Videos' }]} heading="Videos" noPhoto text="Site tours, progress updates and a look inside our yards, straight from our YouTube channel.">
+    <Fragment slot="actions"><Button href={company.youtube.subscribeUrl} label="Subscribe on YouTube" icon="arrow-up-right" /></Fragment>
+  </Hero>
+  {latest ? (
+    <>
+      <Section bg="page">
+        <div class="stack reveal" style="--gap:16px">
+          <h2 class="t-h3">Latest video</h2>
+          <VideoPlayer id={latest.id} title={latest.title} />
+          <p class="c-2"><time datetime={latest.date}>{nice(latest.date)}</time></p>
+        </div>
+      </Section>
+      {rest.length > 0 && (
+        <Section>
+          <div class="reveal"><SectionHeader label="All videos" heading="Newest first" /></div>
+          {topics.length > 1 && <FilterChips topics={topics} target="video-list" label="Filter videos by topic" />}
+          <ul class="grid t2 d3 vlist" id="video-list">{rest.map((v) => <li data-topic={v.topic} class="reveal"><VideoCard id={v.id} title={v.title} date={v.date} /></li>)}</ul>
+          <div><Button variant="secondary" href={company.youtube.url} label="See every video on YouTube" icon="arrow-up-right" /></div>
+        </Section>
+      )}
+    </>
+  ) : (
+    <Section bg="page">
+      <EmptyState title="Watch our videos on YouTube" text="Site tours, progress updates and estate news are on our channel." action={{ label: 'Go to our YouTube channel', href: company.youtube.url }} />
+    </Section>
+  )}
+</Base>
+<style>.vlist { list-style: none; padding: 0; } .vlist li[hidden] { display: none; }</style>

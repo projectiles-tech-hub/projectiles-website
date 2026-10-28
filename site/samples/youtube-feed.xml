@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- Sample video list for SAMPLES=1 builds only. Not real videos. -->
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015">
+<entry><yt:videoId>SAMPLE00000</yt:videoId><title>Primrose Hill Obazuwa: site tour</title><published>2026-10-28T10:00:00+00:00</published></entry>
+<entry><yt:videoId>SAMPLE00001</yt:videoId><title>Foundation work on a duplex in Ugbowo</title><published>2026-10-26T10:00:00+00:00</published></entry>
+<entry><yt:videoId>SAMPLE00002</yt:videoId><title>Cement delivery day</title><published>2026-10-24T10:00:00+00:00</published></entry>
+<entry><yt:videoId>SAMPLE00003</yt:videoId><title>Primrose Hill Uzala: survey and beacons</title><published>2026-09-22T10:00:00+00:00</published></entry>
+<entry><yt:videoId>SAMPLE00004</yt:videoId><title>Block moulding at our yard</title><published>2026-09-20T10:00:00+00:00</published></entry>
+<entry><yt:videoId>SAMPLE00005</yt:videoId><title>Sand dredging on the river</title><published>2026-09-18T10:00:00+00:00</published></entry>
+<entry><yt:videoId>SAMPLE00006</yt:videoId><title>Roofing a bungalow in GRA</title><published>2026-08-16T10:00:00+00:00</published></entry>
+<entry><yt:videoId>SAMPLE00007</yt:videoId><title>Our trucks on the road</title><published>2026-08-14T10:00:00+00:00</published></entry>
+<entry><yt:videoId>SAMPLE00008</yt:videoId><title>Meet the team</title><published>2026-08-12T10:00:00+00:00</published></entry>
+</feed>

@@ -1,0 +1,17 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import Button from './Button.astro';
+interface Props { label: string; heading: string; text: string; formHref?: string; formLabel?: string }
+const { label, heading, text, formHref = '/contact/', formLabel = 'Use the contact form' } = Astro.props;
+---
+<section class="section bg-page">
+  <div class="wrap cta reveal">
+    <SectionHeader label={label} heading={heading} text={text} />
+    <div class="cta__acts"><Button variant="whatsapp" /><Button variant="secondary" href={formHref} label={formLabel} /></div>
+  </div>
+</section>
+<style>
+  .cta { display: flex; flex-direction: column; gap: 24px; }
+  .cta__acts { display: flex; flex-wrap: wrap; gap: 16px; }
+  @media (max-width: 767px) { .cta__acts { flex-direction: column; } .cta__acts :global(.btn) { width: 100%; } }
+</style>

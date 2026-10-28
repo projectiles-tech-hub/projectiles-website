@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+interface Props { items: { label: string; href?: string }[] }
+const { items } = Astro.props;
+---
+<nav class="wrap bc" aria-label="Breadcrumb">
+  <ol>
+    {items.map((it, i) => (
+      <li>
+        {it.href && i < items.length - 1 ? <a href={it.href} class="t-small">{it.label}</a> : <span class="t-small bc__current" aria-current="page">{it.label}</span>}
+        {i < items.length - 1 && <Icon name="chevron-right" size={16} />}
+      </li>
+    ))}
+  </ol>
+</nav>
+<style>
+  .bc { padding-top: 8px; }
+  .bc ol { display: flex; align-items: center; list-style: none; padding: 0; min-height: 48px; overflow: hidden; }
+  .bc li { display: flex; align-items: center; gap: 8px; margin-right: 8px; min-width: 0; }
+  .bc li:last-child { flex: 1 1 auto; min-width: 0; }
+  .bc a { color: var(--link); white-space: nowrap; display: inline-flex; min-height: 48px; align-items: center; }
+  .bc__current { font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bc :global(svg) { flex: none; color: var(--text-2); }
+  @media (min-width: 768px) { .bc { padding-top: 16px; } }
+</style>

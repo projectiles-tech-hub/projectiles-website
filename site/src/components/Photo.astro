@@ -1,0 +1,24 @@
+---
+// A photo, or a labelled placeholder until real photos are supplied.
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Icon from './Icon.astro';
+interface Props { src?: ImageMetadata; alt?: string; ratio?: '16:9' | '4:3' | '3:2' | '1:1' | '4:5'; sizes?: string; eager?: boolean; class?: string }
+const { src, alt = '', ratio = '4:3', sizes = '(min-width: 1200px) 600px, 100vw', eager = false, class: cls } = Astro.props;
+const [w, h] = ratio.split(':').map(Number);
+---
+<div class:list={['photo', cls]} style={`aspect-ratio:${w}/${h}`}>
+  {src ? (
+    <Picture src={src} alt={alt} formats={['avif', 'webp']} widths={[360, 720, 1080, 1440]} sizes={sizes} loading={eager ? 'eager' : 'lazy'} />
+  ) : (
+    <div class="photo__placeholder" role="img" aria-label="Photo to come">
+      <Icon name="image" size={32} />
+      <span class="t-label">Photo (placeholder)</span>
+    </div>
+  )}
+</div>
+<style>
+  .photo { position: relative; width: 100%; overflow: hidden; background: var(--bg-subtle); }
+  .photo :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .photo__placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--green-800); text-align: center; padding: 16px; }
+</style>

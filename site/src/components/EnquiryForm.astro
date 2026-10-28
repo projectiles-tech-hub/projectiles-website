@@ -1,0 +1,149 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import { company } from '../config/company';
+type Field = {
+  type: 'text' | 'phone' | 'email' | 'select' | 'textarea';
+  name: string; label: string; help?: string; required?: boolean; autocomplete?: string;
+  options?: string[]; selected?: string; placeholder?: string; error?: string;
+};
+interface Props { id: string; form: string; fields: Field[]; button?: string; thanksHeading?: string; thanksText?: string }
+const { id, form, fields, button = 'Send enquiry', thanksHeading = 'Thank you. We have your enquiry.', thanksText = 'We reply within one working day, by phone, WhatsApp or email.' } = Astro.props;
+const errors: Record<string, string> = { text: 'Enter your full name', phone: 'Enter a Nigerian phone number, for example 810 792 7331', email: 'Enter an email address like name@example.com', select: 'Choose an option', textarea: 'Tell us a little about what you need' };
+---
+<div class="ef" id={id} data-form-wrap>
+  <form class="ef__form" action="/enquiry.php" method="post" novalidate data-enquiry-form>
+    <input type="hidden" name="form" value={form} />
+    <input type="hidden" name="page" value={Astro.url.pathname} />
+    <div class="ef__hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+    <div class="ef__notice ef__notice--error" role="alert" hidden data-form-error>
+      <Icon name="error" variant="duotone" />
+      <div><p class="t-strong">Your enquiry was not sent</p><p>Check your connection and try again, or chat with us on WhatsApp.</p></div>
+    </div>
+    {fields.map((f) => {
+      const fid = `${id}-${f.name}`;
+      const help = f.help ? `${fid}-help` : undefined;
+      const err = `${fid}-err`;
+      const describedby = [help, err].filter(Boolean).join(' ');
+      return (
+        <div class="field" data-field>
+          <label for={fid} class="t-strong">{f.label}{!f.required && <span class="c-2" style="font-weight:400"> (optional)</span>}</label>
+          {f.help && <p id={help} class="t-small c-2">{f.help}</p>}
+          {f.type === 'textarea' ? (
+            <textarea id={fid} name={f.name} rows="5" required={f.required} aria-describedby={describedby} placeholder={f.placeholder}></textarea>
+          ) : f.type === 'select' ? (
+            <div class="field__select">
+              <select id={fid} name={f.name} required={f.required} aria-describedby={describedby}>
+                <option value="" selected={!f.selected}>{f.placeholder ?? 'Choose one'}</option>
+                {f.options?.map((o) => <option value={o} selected={o === f.selected}>{o}</option>)}
+              </select>
+              <Icon name="chevron-down" size={20} />
+            </div>
+          ) : f.type === 'phone' ? (
+            <div class="field__phone">
+              <span class="t-strong" aria-hidden="true">+234</span>
+              <input id={fid} name={f.name} type="tel" inputmode="tel" autocomplete="tel" required={f.required} aria-describedby={describedby} placeholder="810 000 0000" />
+            </div>
+          ) : (
+            <input id={fid} name={f.name} type={f.type === 'email' ? 'email' : 'text'} autocomplete={f.autocomplete ?? (f.type === 'email' ? 'email' : f.name === 'name' ? 'name' : undefined)} spellcheck={f.type === 'email' ? 'false' : undefined} required={f.required} aria-describedby={describedby} placeholder={f.placeholder} />
+          )}
+          <p id={err} class="field__err t-small" hidden><Icon name="error" size={20} /><span>{f.error ?? errors[f.type]}</span></p>
+        </div>
+      );
+    })}
+    <div class="field field--check" data-field>
+      <label class="check">
+        <input type="checkbox" name="consent" value="yes" required aria-describedby={`${id}-consent-err`} />
+        <span class="check__box" aria-hidden="true"><Icon name="check" size={20} /></span>
+        <span>I agree that {company.shortName} may use these details to reply to my enquiry, as set out in the <a href="/privacy/">privacy notice</a>.</span>
+      </label>
+      <p id={`${id}-consent-err`} class="field__err t-small" hidden><Icon name="error" size={20} /><span>Tick the box so we can reply to you</span></p>
+    </div>
+    {company.turnstileSiteKey && <div class="cf-turnstile" data-sitekey={company.turnstileSiteKey}></div>}
+    <div><Button type="submit" label={button} class="ef__submit" /></div>
+  </form>
+  <div class="ef__thanks" hidden tabindex="-1" data-form-thanks>
+    <Icon name="check" variant="duotone" size={40} />
+    <p class="t-h3">{thanksHeading}</p>
+    <p class="c-2">{thanksText}</p>
+    <Button variant="text" href="/" label="Back to the home page" icon="arrow-right" />
+  </div>
+</div>
+{company.turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+<script>
+  const validate = (el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
+    let ok = el.checkValidity();
+    if (ok && el.type === 'tel' && el.value.trim()) ok = /^0?[789][01]\d{8}$/.test(el.value.replace(/[\s-]/g, '').replace(/^\+?234/, ''));
+    if (ok && el.type === 'checkbox') ok = (el as HTMLInputElement).checked;
+    const field = el.closest('[data-field]');
+    const err = field?.querySelector<HTMLElement>('.field__err');
+    field?.classList.toggle('is-error', !ok);
+    el.setAttribute('aria-invalid', String(!ok));
+    if (err) err.hidden = ok;
+    return ok;
+  };
+  document.querySelectorAll<HTMLFormElement>('[data-enquiry-form]').forEach((form) => {
+    const wrap = form.closest('[data-form-wrap]')!;
+    const inputs = [...form.querySelectorAll<HTMLInputElement>('input[required], select[required], textarea[required], input[type=tel]')];
+    inputs.forEach((el) => el.addEventListener('blur', () => { if (el.value || el.type === 'checkbox') validate(el); }));
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const results = inputs.map((el) => (el.required || el.value ? validate(el) : true));
+      const firstBad = inputs[results.indexOf(false)];
+      if (firstBad) { firstBad.focus(); return; }
+      const btn = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+      const errBox = form.querySelector<HTMLElement>('[data-form-error]')!;
+      const label = btn.querySelector('span:not(.visually-hidden)') ?? btn; const was = label.textContent;
+      btn.disabled = true; btn.setAttribute('aria-busy', 'true'); label.textContent = 'Sending…';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error('not sent');
+        form.hidden = true;
+        const thanks = wrap.querySelector<HTMLElement>('[data-form-thanks]')!;
+        thanks.hidden = false; thanks.focus();
+      } catch {
+        errBox.hidden = false; errBox.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      } finally { btn.disabled = false; btn.removeAttribute('aria-busy'); label.textContent = was; }
+    });
+  });
+</script>
+<style>
+  .ef__form { display: flex; flex-direction: column; gap: 20px; }
+  @media (min-width: 768px) { .ef__form { gap: 24px; } }
+  .ef__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field input:not([type=checkbox]), .field textarea, .field select {
+    width: 100%; min-height: 52px; padding: 13px 16px; border: 1px solid var(--field); border-radius: 4px;
+    background: var(--white); font: 400 16px/24px var(--font); color: var(--text); appearance: none;
+  }
+  .field textarea { min-height: 136px; resize: vertical; }
+  .field ::placeholder { color: var(--ink-500); }
+  .field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--focus); box-shadow: inset 0 0 0 1px var(--focus); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .field.is-error input:not([type=checkbox]), .field.is-error textarea, .field.is-error select { border-color: var(--error); box-shadow: inset 0 0 0 1px var(--error); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .field__select { position: relative; }
+  .field__select select { padding-right: 48px; }
+  .field__select :global(svg) { position: absolute; right: 16px; top: 16px; pointer-events: none; }
+  .field__phone { display: flex; align-items: stretch; border: 1px solid var(--field); border-radius: 4px; background: var(--white); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .field__phone span { display: flex; align-items: center; padding: 0 12px 0 16px; border-right: 1px solid var(--line); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .field__phone input { border: 0 !important; box-shadow: none !important; } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .field__phone:focus-within { border-color: var(--focus); box-shadow: inset 0 0 0 1px var(--focus); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .field.is-error .field__phone { border-color: var(--error); box-shadow: inset 0 0 0 1px var(--error); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .field__err { display: flex; gap: 8px; align-items: flex-start; color: var(--error); }
+  .field__err[hidden] { display: none; }
+  .field__err :global(svg) { flex: none; }
+  .check { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; cursor: pointer; }
+  .check input { position: absolute; opacity: 0; width: 24px; height: 24px; margin: 0; }
+  .check__box { flex: none; width: 24px; height: 24px; border: 1.5px solid var(--ink-900); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: transparent; background: var(--white); }
+  .check input:checked + .check__box { background: var(--green-700); border-color: var(--green-700); color: var(--white); }
+  .check input:focus-visible + .check__box { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .field.is-error .check__box { border-color: var(--error); }
+  .ef__notice { display: flex; gap: 12px; padding: 16px 20px; }
+  .ef__notice[hidden] { display: none; }
+  .ef__notice--error { background: var(--error-bg); border-left: 4px solid var(--error); --icon-tint: #fde8e8; color: var(--text); }
+  .ef__notice--error :global(svg) { color: var(--error); flex: none; }
+  .ef__thanks { display: flex; flex-direction: column; gap: 16px; padding: 40px; background: var(--bg-subtle); --icon-tint: #ffffff; }
+  .ef__thanks[hidden] { display: none; }
+  .ef__thanks :global(svg) { color: var(--green-700); }
+  @media (max-width: 767px) { .ef__thanks { padding: 24px; } .ef__submit { width: 100%; } }
+</style>

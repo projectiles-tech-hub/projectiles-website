@@ -1,0 +1,14 @@
+---
+import Icon from './Icon.astro';
+interface Props { items: { icon: string; label: string }[] }
+const { items } = Astro.props;
+---
+<ul class="ii">
+  {items.map((it) => <li class="reveal"><span class="ii__c" aria-hidden="true"><Icon name={it.icon} variant="duotone" /></span><span class="t-strong">{it.label}</span></li>)}
+</ul>
+<style>
+  .ii { list-style: none; padding: 0; display: grid; gap: 12px 24px; }
+  .ii li { display: flex; align-items: center; gap: 12px; }
+  .ii__c { flex: none; width: 48px; height: 48px; border-radius: 999px; background: var(--green-50); color: var(--green-700); display: flex; align-items: center; justify-content: center; --icon-tint: #ffffff; }
+  @media (min-width: 768px) { .ii { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
+</style>

@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+const links = [['What we do', '/what-we-do/'], ['Estate projects', '/estates/'], ['Invest', '/invest/'], ['Videos', '/videos/'], ['Gallery', '/gallery/'], ['Contact us', '/contact/']];
+---
+<Base title="Page not found" description="We cannot find that page." noindex>
+  <section class="section bg-surface nf">
+    <div class="wrap">
+      <div class="nf__in">
+        <p class="t-label c-link">Error 404</p>
+        <h1 class="t-h1">We cannot find that page</h1>
+        <p class="t-body-lg c-2">The link may be old, or the page may have moved. These are the pages people look for most.</p>
+        <div class="nf__acts"><Button href="/" label="Go to the home page" /><Button variant="whatsapp" /></div>
+        <ul>{links.map(([l, h]) => <li><a href={h} class="t-subtitle">{l}<Icon name="arrow-right" /></a></li>)}</ul>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .nf__in { max-width: 720px; display: flex; flex-direction: column; gap: 16px; }
+  .nf__acts { display: flex; flex-wrap: wrap; gap: 16px; padding-top: 8px; }
+  @media (max-width: 767px) { .nf__acts { flex-direction: column; } .nf__acts :global(.btn) { width: 100%; } }
+  .nf ul { list-style: none; padding: 0; margin-top: 16px; }
+  .nf li a { display: flex; justify-content: space-between; align-items: center; min-height: 48px; padding: 12px 0; border-bottom: 1px solid var(--line); text-decoration: none; } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  @media (min-width: 768px) { .nf__in { gap: 24px; } }
+</style>

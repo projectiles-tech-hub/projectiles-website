@@ -1,0 +1,14 @@
+---
+interface Props { status: 'Coming soon' | 'Now selling' | 'Sold out' }
+const { status } = Astro.props;
+const kind = status === 'Now selling' ? 'selling' : status === 'Sold out' ? 'sold' : 'soon';
+---
+<span class:list={['badge', `badge--${kind}`, 't-label']}><span class="badge__dot" aria-hidden="true"></span>{status}</span>
+<style>
+  .badge { display: inline-flex; align-items: center; gap: 8px; min-height: 28px; padding: 0 12px; border-radius: 999px; width: max-content; }
+  .badge__dot { width: 8px; height: 8px; border-radius: 999px; background: currentColor; }
+  .badge--soon { background: var(--green-50); color: var(--green-800); }
+  .badge--soon .badge__dot { background: var(--green-700); }
+  .badge--selling { background: var(--green-700); color: var(--white); }
+  .badge--sold { background: var(--line); color: var(--ink-600); }
+</style>

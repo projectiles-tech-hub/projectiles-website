@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import { company, fullAddress } from '../config/company';
+const rows = [
+  { icon: 'phone', label: 'Phone and WhatsApp', value: company.phone, href: company.phoneHref },
+  { icon: 'email', label: 'Email', value: company.email, href: `mailto:${company.email}` },
+  { icon: 'location', label: 'Office', value: fullAddress, href: company.mapsUrl, ext: true },
+];
+---
+<ul class="cl">
+  {rows.map((r) => (
+    <li>
+      <span class="cl__icon" aria-hidden="true"><Icon name={r.icon} variant="duotone" /></span>
+      <span class="cl__text">
+        <span class="t-label c-2">{r.label}</span>
+        <a href={r.href} class="t-subtitle" target={r.ext ? '_blank' : undefined} rel={r.ext ? 'noopener' : undefined}>{r.value}{r.ext && <span class="visually-hidden"> (opens map in a new tab)</span>}</a>
+      </span>
+    </li>
+  ))}
+</ul>
+<style>
+  .cl { list-style: none; padding: 0; }
+  .cl li { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .cl__icon { flex: none; width: 48px; height: 48px; border-radius: 999px; background: var(--green-50); color: var(--green-700); display: flex; align-items: center; justify-content: center; --icon-tint: #ffffff; }
+  .cl__text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .cl a { color: var(--text); text-decoration: none; overflow-wrap: anywhere; }
+  .cl a:hover { color: var(--link); text-decoration: underline; }
+  @media (min-width: 768px) { .cl li { padding: 20px 0; gap: 20px; } }
+</style>

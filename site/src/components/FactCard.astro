@@ -1,0 +1,11 @@
+---
+interface Props { number: string; label: string }
+const { number, label } = Astro.props;
+---
+<div class="fact">
+  <p class="t-number">{number}</p>
+  <p class="c-2">{label}</p>
+</div>
+<style>
+  .fact { border-top: 2px solid var(--green-700); padding-top: 16px; display: flex; flex-direction: column; gap: 4px; }
+</style>

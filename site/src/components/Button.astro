@@ -1,0 +1,66 @@
+---
+import Icon from './Icon.astro';
+import Brand from './Brand.astro';
+import { company } from '../config/company';
+interface Props {
+  variant?: 'primary' | 'secondary' | 'text' | 'whatsapp' | 'primary-dark' | 'secondary-dark';
+  size?: 'small' | 'medium' | 'large';
+  href?: string;
+  label?: string;
+  icon?: string;
+  external?: boolean;
+  full?: boolean;
+  type?: 'button' | 'submit';
+  class?: string;
+  [key: string]: unknown;
+}
+const { variant = 'primary', size = 'large', href, label, icon, external, full, type = 'button', class: cls, ...rest } = Astro.props;
+const isWa = variant === 'whatsapp';
+const text = label ?? (isWa ? 'Chat on WhatsApp' : '');
+const link = href ?? (isWa ? company.whatsappHref : undefined);
+const ext = external ?? (link ? /^https?:/.test(link) : false);
+const iconSize = size === 'large' ? 24 : 20;
+const Tag = link ? 'a' : 'button';
+---
+<Tag
+  class:list={['btn', `btn--${variant}`, `btn--${size}`, { 'btn--full': full }, cls]}
+  href={link}
+  type={link ? undefined : type}
+  target={ext ? '_blank' : undefined}
+  rel={ext ? 'noopener' : undefined}
+  {...rest}
+>
+  {isWa && <Brand name="whatsapp" size={iconSize} />}
+  <span>{text}</span>
+  {ext && !isWa && <span class="visually-hidden"> (opens in a new tab)</span>}
+  {isWa && <span class="visually-hidden"> (opens WhatsApp)</span>}
+  {icon && <Icon name={icon} size={iconSize} />}
+</Tag>
+<style>
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 0 20px; border-radius: 999px; border: 0;
+    font: 500 14px/20px var(--font); text-decoration: none; cursor: pointer; white-space: nowrap;
+    transition: background-color var(--t-hover) var(--ease-standard), color var(--t-hover) var(--ease-standard), border-color var(--t-hover) var(--ease-standard);
+  }
+  .btn:active { transition-duration: var(--t-press); }
+  .btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .btn--medium { min-height: 52px; padding: 0 24px; font-size: 16px; }
+  .btn--large { min-height: 60px; padding: 0 32px; gap: 12px; font-size: 16px; }
+  .btn--full { display: flex; width: 100%; }
+  .btn--primary { background: var(--green-700); color: var(--white); }
+  .btn--primary:hover, .btn--primary:active { background: var(--green-800); color: var(--white); }
+  .btn--secondary { background: transparent; color: var(--link); box-shadow: inset 0 0 0 1.5px var(--green-700); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .btn--secondary:hover, .btn--secondary:active { background: var(--green-50); color: var(--link-hover); }
+  .btn--text { background: transparent; color: var(--link); padding: 0 8px; min-height: 48px; font-size: 16px; }
+  .btn--text:hover { color: var(--link-hover); text-decoration: underline; }
+  .btn--whatsapp { background: var(--whatsapp); color: var(--ink-900); }
+  .btn--whatsapp:hover { background: var(--whatsapp-hover); color: var(--ink-900); }
+  .btn--whatsapp:active { background: var(--whatsapp-pressed); }
+  .btn--primary-dark { background: var(--white); color: var(--green-700); }
+  .btn--primary-dark:hover { background: var(--green-50); color: var(--green-800); }
+  .btn--secondary-dark { background: transparent; color: var(--white); box-shadow: inset 0 0 0 1.5px var(--white); } /* taste-skill-ignore: approved Figma design (outline, form field or divider) */
+  .btn--secondary-dark:hover { background: var(--green-800); color: var(--white); }
+  .btn--primary-dark:focus-visible, .btn--secondary-dark:focus-visible { outline-color: var(--white); }
+  .btn :global(svg) { flex: none; }
+</style>

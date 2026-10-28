@@ -1,0 +1,65 @@
+name: Publish
+
+# Builds the website and uploads it to Namecheap hosting.
+# Runs when work is merged into main, every morning (to pick up new YouTube videos), or by hand.
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 5 * * *' # 06:17 in Benin City
+  workflow_dispatch:
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stop if publishing is not set up yet
+        id: ready
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          if [ -z "$DEPLOY_HOST" ]; then
+            echo "Publishing settings are not in GitHub yet (see docs/DEPLOYMENT.md). Nothing uploaded."
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: pnpm/action-setup@v4
+        if: steps.ready.outputs.go == 'true'
+        with:
+          package_json_file: site/package.json
+      - uses: actions/setup-node@v4
+        if: steps.ready.outputs.go == 'true'
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: site/pnpm-lock.yaml
+      - name: Build
+        if: steps.ready.outputs.go == 'true'
+        working-directory: site
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+      - name: Upload to the hosting
+        if: steps.ready.outputs.go == 'true'
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${DEPLOY_PORT:-21098}" "$DEPLOY_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          rsync -rlptz --delete \
+            --exclude '.well-known/' --exclude 'cgi-bin/' \
+            -e "ssh -i ~/.ssh/deploy_key -p ${DEPLOY_PORT:-21098}" \
+            site/dist/ "$DEPLOY_USER@$DEPLOY_HOST:${DEPLOY_PATH:-public_html}/"
+          rm -f ~/.ssh/deploy_key

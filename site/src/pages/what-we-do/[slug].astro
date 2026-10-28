@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import BusinessLineCard from '../../components/BusinessLineCard.astro';
+import Photo from '../../components/Photo.astro';
+import Checks from '../../components/Checks.astro';
+import Reasons from '../../components/Reasons.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
+import Gallery from '../../components/Gallery.astro';
+import ContactList from '../../components/ContactList.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import { businessLines, type BusinessLine } from '../../config/company';
+export function getStaticPaths() { return businessLines.map((line) => ({ params: { slug: line.slug }, props: { line } })); }
+const { line } = Astro.props as { line: BusinessLine };
+const others = businessLines.filter((l) => l.slug !== line.slug);
+const photos = [1, 2, 3, 4].map((i) => ({ title: `${line.name}: photo ${i} (placeholder)`, topic: 'Company' }));
+---
+<Base title={line.name} current="/what-we-do/" description={`${line.intro} Projectiles Tech Hub Limited, Benin City, Edo State.`}
+  jsonld={[{ '@context': 'https://schema.org', '@type': 'Service', name: line.name, description: line.intro, provider: { '@type': 'Organization', name: 'Projectiles Tech Hub Limited' }, areaServed: 'Edo State, Nigeria' }]}>
+  <Hero crumbs={[{ label: 'Home', href: '/' }, { label: 'What we do', href: '/what-we-do/' }, { label: line.name }]} label="Business line" heading={line.name} text={line.intro} ratio="4:3" mobileRatio="16:9">
+    <Fragment slot="actions"><Button href="#enquire" label="Enquire about this service" /><Button variant="whatsapp" /></Fragment>
+  </Hero>
+  <Section bg="page">
+    <div class="reveal"><SectionHeader label="What we offer" heading={`Our ${line.name.toLowerCase()} services`} text="Everything you need, done properly and on time." /></div>
+    <Reasons items={line.services} cols={3} />
+  </Section>
+  <Section>
+    <div class="two-col">
+      <div class="stack reveal" style="--gap:28px">
+        <SectionHeader label="Who it is for" heading="Who we work with" />
+        <Checks items={line.audience} />
+      </div>
+      <div class="reveal"><Photo ratio="4:3" /></div>
+    </div>
+  </Section>
+  <Section bg="page">
+    <div class="reveal"><SectionHeader label="How it works" heading="From first conversation to handover" /></div>
+    <Reasons items={line.steps} cols={4} numbered />
+  </Section>
+  <Section>
+    <div class="reveal"><SectionHeader label="Photos and video" heading="See our work" /></div>
+    {line.video && <VideoPlayer id={line.video} title={`${line.name}: video`} />}
+    <Gallery items={photos} id={`gallery-${line.slug}`} />
+  </Section>
+  <Section bg="page" id="enquire">
+    <div class="two-col top">
+      <div class="stack reveal" style="--gap:28px">
+        <SectionHeader label="Enquire" heading="Talk to us about your project" text="Chat on WhatsApp for the quickest reply, call us, or send the form and we will call you back within one working day." />
+        <div><Button variant="whatsapp" /></div>
+        <ContactList />
+      </div>
+      <div class="reveal">
+        <EnquiryForm id="enquiry" form={`Business line: ${line.name}`} fields={[
+          { type: 'text', name: 'name', label: 'Full name', required: true, placeholder: 'Your full name' },
+          { type: 'phone', name: 'phone', label: 'Phone or WhatsApp number', help: 'We call or WhatsApp you on this number.', required: true },
+          { type: 'email', name: 'email', label: 'Email', placeholder: 'you@example.com' },
+          { type: 'select', name: 'line', label: 'Business line', required: true, options: businessLines.map((l) => l.name), selected: line.name, help: `${line.name} is already selected.` },
+          { type: 'textarea', name: 'message', label: 'Tell us about your project', required: true, help: 'A few lines is enough.' },
+        ]} />
+      </div>
+    </div>
+  </Section>
+  <Section>
+    <div class="reveal"><SectionHeader label="What we do" heading="Our other business lines" /></div>
+    <div class="grid t2 d3">{others.map((l) => <div class="reveal flex"><BusinessLineCard line={l} /></div>)}</div>
+  </Section>
+</Base>
+<style>.flex { display: flex; } .flex > :global(*) { flex: 1; }</style>

@@ -1,0 +1,20 @@
+---
+import Icon from './Icon.astro';
+interface Props { type?: 'information' | 'error' | 'success'; title: string; text?: string }
+const { type = 'information', title, text } = Astro.props;
+const icon = type === 'error' ? 'error' : type === 'success' ? 'check' : 'information';
+---
+<div class:list={['notice', `notice--${type}`]} role={type === 'error' ? 'alert' : 'note'}>
+  <Icon name={icon} variant="duotone" />
+  <div><p class="t-strong">{title}</p>{text && <p>{text}</p>}<slot /></div>
+</div>
+<style>
+  .notice { display: flex; gap: 12px; padding: 16px 20px; border-left: 4px solid; }
+  .notice :global(svg) { flex: none; }
+  .notice--information { background: var(--info-bg); border-color: var(--info); --icon-tint: #e6edfd; }
+  .notice--information :global(svg) { color: var(--info); }
+  .notice--error { background: var(--error-bg); border-color: var(--error); --icon-tint: #fde8e8; }
+  .notice--error :global(svg) { color: var(--error); }
+  .notice--success { background: var(--green-50); border-color: var(--green-700); }
+  .notice--success :global(svg) { color: var(--green-700); }
+</style>

@@ -1,0 +1,40 @@
+---
+// A drawn map (no paid map service) with the address and a Get directions link.
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import { company } from '../config/company';
+interface Props { title?: string; lines?: string[]; mapsUrl?: string }
+const { title = 'Visit us', lines = [company.name, `${company.address.street}, ${company.address.area}`, `${company.address.city}, ${company.address.state}`], mapsUrl = company.mapsUrl } = Astro.props;
+---
+<div class="map">
+  <div class="map__draw" aria-hidden="true">
+    <svg viewBox="0 0 1240 480" preserveAspectRatio="xMidYMid slice">
+      <rect width="1240" height="480" fill="#E7F3EC" />
+      <g fill="none" stroke="#FFFFFF" stroke-linecap="round">
+        <path d="M-20 300 C 300 260 700 330 1260 250" stroke-width="22" />
+        <path d="M260 -20 L 380 500" stroke-width="16" />
+        <path d="M820 -20 C 800 160 860 320 900 500" stroke-width="16" />
+        <path d="M-20 120 C 300 160 520 110 1260 140" stroke-width="10" />
+        <path d="M560 500 C 600 400 700 360 1260 380" stroke-width="10" />
+      </g>
+    </svg>
+    <span class="map__pin"><Icon name="location" variant="duotone" size={40} /></span>
+  </div>
+  <div class="map__card">
+    <p class="t-h4">{title}</p>
+    <p class="c-2">{lines.map((l, i) => <>{l}{i < lines.length - 1 && <br />}</>)}</p>
+    <Button variant="secondary" href={mapsUrl} label="Get directions" icon="arrow-up-right" external />
+  </div>
+</div>
+<style>
+  .map { position: relative; display: flex; flex-direction: column; background: var(--bg-surface); }
+  .map__draw { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+  .map__draw svg { width: 100%; height: 100%; }
+  .map__pin { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -100%); color: var(--green-700); --icon-tint: #ffffff; }
+  .map__card { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; padding: 24px 16px; }
+  @media (min-width: 1200px) {
+    .map { display: block; height: 480px; }
+    .map__draw { position: absolute; inset: 0; aspect-ratio: auto; }
+    .map__card { position: absolute; left: 40px; top: 40px; width: 400px; padding: 32px; background: var(--white); }
+  }
+</style>

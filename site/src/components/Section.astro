@@ -1,0 +1,11 @@
+---
+interface Props { bg?: 'page' | 'surface'; id?: string; class?: string; label?: string }
+const { bg = 'surface', id, class: cls, label } = Astro.props;
+---
+<section class:list={['section', `bg-${bg}`, cls]} id={id} aria-label={label}>
+  <div class="wrap section__in"><slot /></div>
+</section>
+<style>
+  .section__in { display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 768px) { .section__in { gap: 48px; } }
+</style>
