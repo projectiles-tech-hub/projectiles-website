@@ -10,7 +10,8 @@ Updated: 28 October 2026.
 - Icons, components, colours and type approved by Emmanuel on 28 October 2026 (links in `designs.md`). This
   includes the darker green for pressed buttons, the official social media colours for their marks, and the field
   outline grey #B8BEC7 as chosen.
-- Next: logo options, spacing and grid, motion, and the directions board.
+- Design system approved on 28 October 2026: Direction 1 (light and calm), the logo (all three colour options, each
+  used where it fits; SVG files in `brand/logo/`), spacing, grid and shape, and motion (Material Design 3 timings).
 - Fonts: Source Sans 3 only (the FindHouseQuick font).
 - Nothing built yet.
 
@@ -30,9 +31,7 @@ None open.
 
 ## Next
 
-1. [ ] Design system in Figma, approved (brief: `DESIGN_BRIEF.md`; progress: `designs.md`).
-   - [x] Icons, components, colours and type approved (28 October 2026).
-   - [ ] Logo options, spacing and grid, motion and directions boards.
+1. [x] Design system in Figma, approved (28 October 2026).
 2. [ ] Page designs in Figma, approved.
 3. [ ] Build the pages.
 4. [ ] Hosting, domain, forms, YouTube feed and automatic publishing.
