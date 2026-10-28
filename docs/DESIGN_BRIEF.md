@@ -42,7 +42,7 @@ amber accent and a blueprint grid). Start fresh.
 What "premium" means here:
 - Large, confident photography and video; real places and people, not illustration.
 - Generous white space and a calm, uncluttered layout.
-- Refined typography with a clear hierarchy; a strong display face for headlines is welcome.
+- Refined typography in Source Sans 3 (Section 4b) with a clear, confident hierarchy.
 - The FindHouseQuick colours (Section 4a), used with discipline, not everywhere.
 - Subtle, purposeful motion (gentle reveals, hover states), never decoration for its own sake.
 - Confidence and trust: credentials visible, contact always one tap away.
@@ -56,8 +56,8 @@ Avoid:
 - Carousels that hide the main message.
 
 Show **two or three distinct directions**, side by side on one board, before choosing one with Emmanuel. All
-directions use the FindHouseQuick colours (Section 4a); they differ in how the colours are blended and balanced, and
-in type (Section 5).
+directions use the FindHouseQuick colours (Section 4a) and the FindHouseQuick font (Section 4b); they differ in how
+the colours are blended and balanced and in how the type is sized and set.
 
 ## 4. The logo
 
@@ -109,19 +109,41 @@ palette lacks, for example a deep dark shade for dark hero and footer sections, 
 and image overlays, each derived from or harmonising with the FindHouseQuick palette. Show every added colour beside
 the FindHouseQuick colours on the Colours board, with the reason for it, for Emmanuel's approval.
 
+## 4b. Font
+
+**The website uses the FindHouseQuick font: Source Sans 3** (free, SIL Open Font Licence; FindHouseQuick decision 69).
+It was chosen because it includes the Naira sign (₦) and the dotted letters Yoruba and Igbo need. One family only;
+no second font.
+
+FindHouseQuick text styles, read from its Penpot library on 28 October 2026 (size in pixels / weight / line height):
+
+| Style | Size | Weight | Line height |
+| --- | --- | --- | --- |
+| Display | 28 | 700 (Bold) | 1.29 |
+| Title | 22 | 700 (Bold) | 1.36 |
+| Price | 20 | 700 (Bold) | 1.3 |
+| Subtitle | 18 | 500 (Medium) | 1.44 |
+| Body | 16 | 400 (Regular) | 1.5 |
+| Button | 16 | 500 (Medium) | 1.25 |
+| Label | 14 | 500 (Medium) | 1.43 |
+| Body small | 14 | 400 (Regular) | 1.43 |
+
+These sizes are for app screens. The website keeps the same font, weights and the reading sizes (Body 16, Label 14,
+Body small 14, Button 16), and adds larger heading sizes for desktop and tablet (Section 7.2). Weights used:
+400, 500, 600 if needed, and 700.
+
 ## 5. Design principles (the same ones used for FindHouseQuick)
 
 1. **Design system first**, approved before any page.
-2. **Choices side by side.** Colour and type options are compared on one board before one is chosen.
+2. **Choices side by side.** Directions are compared on one board before one is chosen.
 3. **Our own icon set** (Section 7.5). Drawn for this website, to a standard above Font Awesome's paid set, in two
    matching styles: outline for normal use, filled for selected or active states. No outside icon set is used.
    The only exception is other companies' brand marks (WhatsApp, YouTube, Facebook, Instagram, X, LinkedIn,
    TikTok), which must use their official marks under their own brand rules.
-4. **Fonts that fit Nigeria.** Every font must include the Naira sign (₦) and the letters Yoruba and Igbo need.
-   Test each candidate with this line before proposing it:
+4. **Font that fits Nigeria: Source Sans 3** (Section 4b), which includes the Naira sign (₦) and the letters Yoruba
+   and Igbo need. Show this line in it on the Type board:
    `₦25,000,000 · Ẹ̀dó · Ọ̀bàzùwà · Ụzala · ṣ ẹ ọ ụ ị ṅ Ṣ Ẹ Ọ Ụ Ị Ṅ`
-   Fonts must be free for commercial web use (for example, SIL Open Font Licence, as on Google Fonts), because the
-   website hosts them itself.
+   The website hosts the font files itself (SIL Open Font Licence allows this).
 5. **Text sizes:** nothing smaller than 14; reading text 16 or larger.
 6. **Spacing in steps of 4**, and every tap target at least 48 by 48.
 7. **Responsive at every width.** Each page is drawn at **1366** (desktop), **768** (tablet) and **360** (phone).
@@ -140,7 +162,7 @@ The site is built with Astro into plain, fast files. For the design, that means:
 - **Use auto layout** so the intended behaviour at different widths is clear.
 - **Keep pages light.** Prefer real photos to heavy effects; no full-screen background video autoplaying on
   phones (a poster image with a play button is fine). Videos play from YouTube only after a tap.
-- **Fonts:** at most two families, and only the weights actually used.
+- **Font:** Source Sans 3 only, and only the weights actually used.
 - **Images:** state the aspect ratio of each image slot (for example 16:9, 4:3, 1:1). Real photos will be dropped
   into those slots later.
 
@@ -155,9 +177,10 @@ Put it on the page "00 Design system", one board per part.
 - A contrast table for every text and background pair actually used.
 
 ### 7.2 Type
-- Font families, with the test line from Section 5 shown in each.
-- A type scale for headings (display, H1 to H4), body (large, regular), small text, labels, buttons, and numbers
-  (prices, sizes), with sizes, line heights and weights at desktop and phone.
+- Source Sans 3, with the test line from Section 5 shown in it.
+- A type scale in Source Sans 3 for headings (display, H1 to H4), body (large, regular), small text, labels, buttons,
+  and numbers (prices, sizes), with sizes, line heights and weights at desktop, tablet and phone. Reading sizes follow
+  the FindHouseQuick text styles (Section 4b).
 
 ### 7.3 Spacing, grid and shape
 - Spacing scale in steps of 4.
@@ -299,7 +322,8 @@ The thank-you state and the error state of each form (shown in place on the page
 
 ## 9. Order of work and delivery
 
-1. **Directions:** two or three directions (colour blending and type, all on the FindHouseQuick colours) on one board, using the logo, a button, a card and a
+1. **Directions:** two or three directions (colour blending and type setting, all on the FindHouseQuick colours and
+   Source Sans 3) on one board, using the logo, a button, a card and a
    short hero, at desktop and phone. Emmanuel chooses one.
 2. **Design system:** everything in Section 7, built as variables, styles and components. Approved.
 3. **Pages**, in this order, each at 1366, 768 and 360: Home; What we do; Business line page; Estate projects;
